@@ -29,9 +29,7 @@ public class Economy : MonoBehaviour
     {
         if (player.GetOr() >= 20)
         {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
-            GameObject newGoldPile = Instantiate(goldPrefab, pos, Quaternion.identity);
+            GameObject newGoldPile = Instantiate(goldPrefab, transform.position, Quaternion.identity);
             goldPile.Add(newGoldPile);
             newGoldPile.GetComponent<GoldPile>().SetGold(20);
             player.GainOr(-20);

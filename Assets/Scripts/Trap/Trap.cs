@@ -36,9 +36,9 @@ public class Trap : MonoBehaviour
     {
         if (!_cooldown)
         {
-            Debug.Log("oui");
             GameObject _trap = Instantiate(projectile, transform.position, Quaternion.identity);
             _trap.GetComponent<Rigidbody2D>().AddForce(-transform.up * power);
+            Destroy(_trap, 2);
             _cooldown = true;
             StartCoroutine(cooldown());
         }
