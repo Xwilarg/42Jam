@@ -242,6 +242,7 @@ MonoBehaviour:
     type: 3}
   corridorVerticalPrefab: {fileID: 1840535193165831646, guid: fc515f6aa18e95f40bb2031c433663bc,
     type: 3}
+  wallTile: {fileID: 11400000, guid: 858a8dfbb5b68cc44b31ed7f5b9e6ad2, type: 2}
 --- !u!4 &1818904812
 Transform:
   m_ObjectHideFlags: 0
