@@ -14,16 +14,17 @@ public class PartySpawner : MonoBehaviour
     private const int partyMinSize = 2;
     private const int partyMaxSize = 6;
     private float spawnTime;
-    private Node firstNode;
+    private Node firstNode, finalNode;
     private Node[] finalPath;
 
     private void Start()
     {
         spawnTime = spawnTimeRef;
         firstNode = HeroController.GetClosestNode(transform.position);
-        StartCoroutine("SpawnParty");
         List<Node> path = new List<Node>();
-        finalPath = GetShortestWay(path, HeroController.GetClosestNode(GameObject.FindGameObjectWithTag("Player").transform.position)).ToArray();
+        finalNode = HeroController.GetClosestNode(GameObject.FindGameObjectWithTag("Player").transform.position);
+        finalPath = GetShortestWay(path, firstNode).ToArray();
+        StartCoroutine("SpawnParty");
     }
 
     private void Update()
@@ -39,22 +40,30 @@ public class PartySpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get shortest way from point A to B following nodes
+    /// </summary>
+    /// <param name="path">Current path</param>
+    /// <param name="currNode">Next node</param>
     private List<Node> GetShortestWay(List<Node> path, Node currNode)
     {
-        List<Node> currPath = new List<Node>(path);
-        currPath.Add(currNode);
-        if (currNode == firstNode)
+        if (path == null) // If path is null we ignore it
+            return null;
+        List<Node> currPath = new List<Node>(path); // Create a new path
+        currPath.Add(currNode); // Add current node to path
+        if (currNode == finalNode) // If we reach first node then it's okay
             return currPath;
-        foreach (var l in currNode.nodes)
+        List<Node> addPath = null; // Final path
+        foreach (var l in currNode.nodes) // We go through each nodes
         {
-            if (!currPath.Contains(l))
+            if (!currPath.Contains(l)) // If current path contains the node, that means we are looping
             {
-                var newPath = GetShortestWay(currPath, l);
-                if (currPath == null || newPath.Count < currPath.Count)
-                    currPath = newPath;
+                var newPath = GetShortestWay(currPath, l); // Get path
+                if (newPath != null && (addPath == null || newPath.Count < addPath.Count)) // If it's the shortest path
+                    addPath = newPath;
             }
         }
-        return currPath;
+        return addPath;
     }
 
     private IEnumerator SpawnParty()
