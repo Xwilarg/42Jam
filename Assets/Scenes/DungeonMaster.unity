@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896611e57069dfa4db70bdc3763d4c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 100
 --- !u!61 &490846200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 1867305059}
   - component: {fileID: 1867305058}
   - component: {fileID: 1867305060}
+  - component: {fileID: 1867305061}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -355,6 +356,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1867305061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867305057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896611e57069dfa4db70bdc3763d4c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 9999
 --- !u!1001 &1204824717996896123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204824717808179341, guid: 29095cceae1a1f3489341279f5541c31,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1204824717808179329, guid: 29095cceae1a1f3489341279f5541c31,
         type: 3}
@@ -448,5 +467,11 @@ PrefabInstance:
       propertyPath: speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1204824717808179340, guid: 29095cceae1a1f3489341279f5541c31,
+        type: 3}
+      propertyPath: damagePrefab
+      value: 
+      objectReference: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29095cceae1a1f3489341279f5541c31, type: 3}
