@@ -21,9 +21,12 @@ public class ProceduralDungeon : MonoBehaviour
     public List<GameObject> roomPrefabs;
     public GameObject corridorHorizontalPrefab;
     public GameObject corridorVerticalPrefab;
-    public Tile wallTile;
+    public Tile wallTileUp;
+    public Tile wallTileRight;
+    public Tile wallTileDown;
+    public Tile wallTileLeft;
 
-    private uint gapBetweenRooms = 4;
+    private uint gapBetweenRooms = 2;
 
     void Start()
     {
@@ -139,26 +142,30 @@ public class ProceduralDungeon : MonoBehaviour
                     wallTilemap.CompressBounds();
 
                     if (neighbours.up == false) {
-                        wallTilemap.SetTile(new Vector3Int(4, -1, 0), wallTile);
-                        wallTilemap.SetTile(new Vector3Int(5, -1, 0), wallTile);
+                        for (int k = 0; k < 4; k++) {
+                            wallTilemap.SetTile(new Vector3Int(3 + k, -1, 0), wallTileUp);
+                        }
                     }
                     if (neighbours.right == false) {
-                        wallTilemap.SetTile(new Vector3Int(9, -5, 0), wallTile);
-                        wallTilemap.SetTile(new Vector3Int(9, -6, 0), wallTile);
+                        for (int k = 0; k < 4; k++) {
+                            wallTilemap.SetTile(new Vector3Int(9, -4 - k, 0), wallTileRight);
+                        }
                     }
                     else {
-                        Instantiate(corridorHorizontalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x, i * (roomSize.y + gapBetweenRooms) - roomSize.y / 2 + 2, 0), Quaternion.identity, rooms[i, j].instance.transform);
+                        Instantiate(corridorHorizontalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x - 1, i * (roomSize.y + gapBetweenRooms) - roomSize.y / 2 + 2, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
                     if (neighbours.down == false) {
-                        wallTilemap.SetTile(new Vector3Int(4, -10, 0), wallTile);
-                        wallTilemap.SetTile(new Vector3Int(5, -10, 0), wallTile);
+                        for (int k = 0; k < 4; k++) {
+                            wallTilemap.SetTile(new Vector3Int(3 + k, -10, 0), wallTileDown);
+                        }
                     }
                     else {
-                        Instantiate(corridorVerticalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x / 2 - 2, i * (roomSize.y + gapBetweenRooms) - roomSize.y, 0), Quaternion.identity, rooms[i, j].instance.transform);
+                        Instantiate(corridorVerticalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x / 2 - 2, i * (roomSize.y + gapBetweenRooms) - roomSize.y + 1, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
                     if (neighbours.left == false) {
-                        wallTilemap.SetTile(new Vector3Int(0, -5, 0), wallTile);
-                        wallTilemap.SetTile(new Vector3Int(0, -6, 0), wallTile);
+                        for (int k = 0; k < 4; k++) {
+                            wallTilemap.SetTile(new Vector3Int(0, -4 - k, 0), wallTileLeft);
+                        }
                     }
                 }
             }

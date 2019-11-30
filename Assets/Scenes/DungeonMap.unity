@@ -567,7 +567,10 @@ MonoBehaviour:
     type: 3}
   corridorVerticalPrefab: {fileID: 1840535193165831646, guid: fc515f6aa18e95f40bb2031c433663bc,
     type: 3}
-  wallTile: {fileID: 11400000, guid: 858a8dfbb5b68cc44b31ed7f5b9e6ad2, type: 2}
+  wallTileUp: {fileID: 11400000, guid: a4ab50fced9329342b587b0976c9b315, type: 2}
+  wallTileRight: {fileID: 11400000, guid: fc1ab020600622d438772b2a48f696de, type: 2}
+  wallTileDown: {fileID: 11400000, guid: b7e50cd8fb3bf98449165ea39f3de87a, type: 2}
+  wallTileLeft: {fileID: 11400000, guid: 79edb77b72229484c80f8fe3c39ce711, type: 2}
 --- !u!4 &1818904812
 Transform:
   m_ObjectHideFlags: 0
