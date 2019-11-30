@@ -2,7 +2,6 @@
 
 public class HeroController : MonoBehaviour
 {
-    [SerializeField]
     private Transform player;
 
     private HeroClass heroClass;
@@ -14,6 +13,11 @@ public class HeroController : MonoBehaviour
     {
         heroName = nameValue;
         heroClass = heroValue;
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
