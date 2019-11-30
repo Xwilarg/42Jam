@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private GameObject fireballPrefab;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     private const float swordRange = 1f;
     private const int avoidPlayerLayer = ~(1 << 8);
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         swordReloadTimer = 0f;
         iceReloadTimer = 0f;
         fireReloadTimer = 0f;
@@ -46,16 +48,16 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y))
         {
             if (rb.velocity.x > 0f)
-                transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             else if (rb.velocity.x < 0f)
-                transform.rotation = Quaternion.identity;
+                sr.transform.rotation = Quaternion.identity;
         }
         else
         {
             if (rb.velocity.y > 0f)
-                transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             else if (rb.velocity.y < 0f)
-                transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
     }
 
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
         // Attacks
         if (Input.GetKeyDown(KeyCode.Z) && swordReloadTimer < 0f) // Sword attack
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, swordRange, avoidPlayerLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -sr.transform.right, swordRange, avoidPlayerLayer);
             hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
             swordReloadTimer = swordReloadRef;
         }
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject go = Instantiate(iceSpearPrefab, transform.position, Quaternion.identity);
             go.transform.rotation = transform.rotation;
-            go.GetComponent<Rigidbody2D>().AddForce(-transform.right * iceForce, ForceMode2D.Impulse);
+            go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * iceForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             iceReloadTimer = iceReloadRef;
         }
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject go = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             go.transform.rotation = transform.rotation;
-            go.GetComponent<Rigidbody2D>().AddForce(-transform.right * fireForce, ForceMode2D.Impulse);
+            go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * fireForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             fireReloadTimer = fireReloadRef;
         }
