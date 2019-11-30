@@ -2,7 +2,7 @@
 
 public class Bullet : MonoBehaviour
 {
-    private int damage;
+    protected int damage;
 
     public void SetDamage(int value)
         => damage = value;
