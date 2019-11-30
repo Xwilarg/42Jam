@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
@@ -10,13 +9,15 @@ public class HeroController : MonoBehaviour
     private HeroClass heroClass;
     private string heroName;
     private const int avoidPlayerLayer = ~(1 << 8 | 1 << 10);
-
+    private Node[] path;
     private Node objective; // Destination the heroes need to reach
 
-    public void Init(string nameValue, HeroClass heroValue)
+    public void Init(string nameValue, HeroClass heroValue, Node[] pathValue)
     {
         heroName = nameValue;
-        heroClass = heroValue;        infos.text = "Name: " + heroName + "\nClass: " + heroClass;
+        heroClass = heroValue;
+        path = pathValue;
+        infos.text = "Name: " + heroName + "\nClass: " + heroClass;
     }
 
     private void Start()
@@ -44,13 +45,13 @@ public class HeroController : MonoBehaviour
         infos.gameObject.SetActive(false);
     }
 
-    private Node GetClosestNode(Vector2 pos)
+    public static Node GetClosestNode(Vector2 pos)
     {
         float dist = float.MaxValue;
         GameObject closest = null;
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Node"))
         {
-            float currDist = Vector2.Distance(transform.position, pos);
+            float currDist = Vector2.Distance(go.transform.position, pos);
             if (closest == null || currDist < dist)
             {
                 closest = go;
