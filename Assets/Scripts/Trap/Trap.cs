@@ -11,6 +11,7 @@ public class Trap : MonoBehaviour
     public int Cost;
     public int maxLevel;
     public int Level;
+    public SpriteRenderer upgradeObj;
     public List<Sprite> upgradeSprite;
 
     // Effect
@@ -35,9 +36,9 @@ public class Trap : MonoBehaviour
     {
         if (!_cooldown)
         {
-            Debug.Log("oui");
             GameObject _trap = Instantiate(projectile, transform.position, Quaternion.identity);
             _trap.GetComponent<Rigidbody2D>().AddForce(-transform.up * power);
+            Destroy(_trap, 2);
             _cooldown = true;
             StartCoroutine(cooldown());
         }
@@ -65,7 +66,8 @@ public class Trap : MonoBehaviour
     {
         if (player.GetOr() >= Cost)
         {
-            GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
+            Level += 1;
+            upgradeObj.sprite = upgradeSprite[Level];
         }
         else
             Debug.Log("Not enough Gold");

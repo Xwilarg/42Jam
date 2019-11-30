@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 6245158337192160804}
   - component: {fileID: 6245158337192160807}
   - component: {fileID: 1475477674104528781}
+  - component: {fileID: 8530029592570906932}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -456,10 +457,36 @@ MonoBehaviour:
   maxLevel: 2
   Level: 0
   upgradeSprite:
-  - {fileID: 21300000, guid: 19798777fd9986d4f86f0dc7bd5971c5, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 228d9220de2e1ea4a911d2d979b0db56, type: 3}
+  - {fileID: 21300000, guid: 8d452fbb28408f64486d24e43fe99533, type: 3}
   Cost: 0
   panel: {fileID: 8889732715365463138}
+--- !u!61 &8530029592570906932
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245158337192160806}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8686745407496063837
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7851291032908031720
 RectTransform:
   m_ObjectHideFlags: 0

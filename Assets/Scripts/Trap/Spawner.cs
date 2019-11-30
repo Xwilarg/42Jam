@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
     {
         if (player.GetOr() >= Cost)
         {
+            Level += 1;
             GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
         }
         else

@@ -118,7 +118,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3536784753585083396}
         m_MethodName: Delete
         m_Mode: 1
         m_Arguments:
@@ -236,7 +236,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -247,7 +247,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &3536784753585083396
 MonoBehaviour:
@@ -265,6 +265,7 @@ MonoBehaviour:
   Cost: 10
   maxLevel: 1
   Level: 0
+  upgradeObj: {fileID: 3536784755087496954}
   upgradeSprite:
   - {fileID: 21300000, guid: 228d9220de2e1ea4a911d2d979b0db56, type: 3}
   - {fileID: 21300000, guid: 8d452fbb28408f64486d24e43fe99533, type: 3}
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3536784753585083396}
         m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
