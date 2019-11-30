@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     private float speed;
 
     [SerializeField]
-    [Tooltip("Damage Display Prefab")]
-    private GameObject damagePrefab;
+    private GameObject iceSpearPrefab;
 
     private Rigidbody2D rb;
 
@@ -17,8 +16,12 @@ public class PlayerController : MonoBehaviour
     private const int avoidPlayerLayer = ~(1 << 8);
     private const int swordDamage = 10;
     private const float swordReloadRef = 1f;
+    private const float iceReloadRef = 5f;
+    private const float iceForce = 5f;
+    private const int iceDamage = 5;
 
     private float swordReloadTimer;
+    private float iceReloadTimer;
 
     private void Start()
     {
@@ -53,21 +56,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && swordReloadTimer < 0f) // Sword attack
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, swordRange, avoidPlayerLayer);
-            if (hit.collider != null)
-            {
-                Character charac = hit.collider.GetComponent<Character>();
-                if (charac != null)
-                {
-                    charac.LooseHp(swordDamage);
-                    Vector3 pos = new Vector3(hit.transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), -1f);
-                    GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
-                    go.GetComponent<TextMesh>().text = "-" + swordDamage;
-                }
-                swordReloadTimer = swordReloadRef;
-            }
+            hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
+            swordReloadTimer = swordReloadRef;
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && iceReloadTimer < 0f) // Ice spear
+        {
+            iceReloadTimer = iceReloadRef;
+            GameObject go = Instantiate(iceSpearPrefab, transform.position, Quaternion.identity);
+            go.transform.rotation = transform.rotation;
+            go.GetComponent<Rigidbody2D>().AddForce(-transform.right * iceForce, ForceMode2D.Impulse);
+            go.GetComponent<Bullet>().SetDamage(iceDamage);
         }
 
         // Reload time
         swordReloadTimer -= Time.deltaTime;
+        iceReloadTimer -= Time.deltaTime;
     }
 }
