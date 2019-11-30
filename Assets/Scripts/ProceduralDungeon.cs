@@ -24,12 +24,13 @@ public class ProceduralDungeon : MonoBehaviour
     {
         generate();
     }
-
     void Update()
     {
-        if (Input.GetKeyDown("g")) {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.G)) {
             generate();
         }
+#endif
     }
 
     public void generate()
