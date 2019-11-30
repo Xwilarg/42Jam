@@ -56,7 +56,7 @@ public class NodeWindow : EditorWindow
             {
                 foreach (Node node in go.GetComponent<Node>().nodes)
                 {
-                    Debug.DrawLine(go.transform.position, node.transform.position, Color.yellow);
+                    Debug.DrawLine(go.transform.position, node.transform.position, Color.red);
                 }
             }
         }
