@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(gobelin, transform);
+        Instantiate(gobelin, transform.position, Quaternion.identity);
         StartCoroutine(cooldown());
     }
 

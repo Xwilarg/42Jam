@@ -21,7 +21,6 @@ public class Economy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(player.GetOr());
         if (Input.GetMouseButtonDown(0))
             DropGold();
     }
