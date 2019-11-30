@@ -1,0 +1,3 @@
+[submodule "Assets/2d-extras"]
+	path = Assets/2d-extras
+	url = https://github.com/Unity-Technologies/2d-extras
