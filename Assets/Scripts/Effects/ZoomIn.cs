@@ -35,7 +35,10 @@ public class ZoomIn : MonoBehaviour
             transform.position = Vector2.Lerp(basePos, toAimGo.position, 1 / (maxFov - (minFoV - 1)) * index);
             transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
             if (Camera.main.fieldOfView <= minFoV)
+            {
+                transform.parent = toAimGo.transform;
                 Destroy(this);
+            }
         }
     }
 }
