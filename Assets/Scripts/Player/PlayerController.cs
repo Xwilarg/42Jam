@@ -16,10 +16,14 @@ public class PlayerController : MonoBehaviour
     private const float swordRange = 1f;
     private const int avoidPlayerLayer = ~(1 << 8);
     private const int swordDamage = 10;
+    private const float swordReloadRef = 1f;
+
+    private float swordReloadTimer;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        swordReloadTimer = 0f;
     }
 
     private void FixedUpdate()
@@ -41,19 +45,29 @@ public class PlayerController : MonoBehaviour
             else if (rb.velocity.y < 0f)
                 transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
+    }
 
+    private void Update()
+    {
         // Attacks
-        if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
+        if (Input.GetKeyDown(KeyCode.Z) && swordReloadTimer < 0f) // Sword attack
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position - transform.right, swordRange, avoidPlayerLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, swordRange, avoidPlayerLayer);
             if (hit.collider != null)
             {
                 Character charac = hit.collider.GetComponent<Character>();
-                charac.LooseHp(swordDamage);
-                GameObject go = Instantiate(damagePrefab, hit.point, Quaternion.identity);
-                go.GetComponent<TextMesh>().text = "-" + swordDamage;
-                go.transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+                if (charac != null)
+                {
+                    charac.LooseHp(swordDamage);
+                    Vector3 pos = new Vector3(hit.transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), -1f);
+                    GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
+                    go.GetComponent<TextMesh>().text = "-" + swordDamage;
+                }
+                swordReloadTimer = swordReloadRef;
             }
         }
+
+        // Reload time
+        swordReloadTimer -= Time.deltaTime;
     }
 }
