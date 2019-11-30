@@ -5,9 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class ProceduralDungeon : MonoBehaviour
 {
-    public Vector2Int size;
+    public Vector2Int size = new Vector2Int(9, 5);
     public uint numberOfRooms;
     private Vector2Int roomSize = new Vector2Int(10, 10);
+
+    public uint maxStartRoom = 3;
 
     private struct RoomDescriptor
     {
@@ -42,18 +44,18 @@ public class ProceduralDungeon : MonoBehaviour
 
         rooms = new RoomDescriptor[size.y, size.x];
         
-        Vector2Int startRoomPos = new Vector2Int(0, (size.y - 1) / 2);
-        rooms[startRoomPos.y, startRoomPos.x].instance = FindRoomPrefab(Room.Type.Start);
-        rooms[startRoomPos.y, startRoomPos.x + 1].instance = FindRoomPrefab(Room.Type.Normal);
+        Vector2Int startRoomPos = new Vector2Int(size.x - 1, (size.y - 1) / 2);
+        rooms[startRoomPos.y, startRoomPos.x].instance = FindRoomPrefab(Room.Type.Boss);
+        rooms[startRoomPos.y, startRoomPos.x - 1].instance = FindRoomPrefab(Room.Type.Normal);
 
         uint maxIter = 0;
         uint numberOfGeneratedRooms = 2;
         while (numberOfGeneratedRooms < numberOfRooms) {
-            Vector2Int randomRoomPos = new Vector2Int(Random.Range(1, size.x - 1), Random.Range(0, size.y));
+            Vector2Int randomRoomPos = new Vector2Int(Random.Range(0, size.x - 2), Random.Range(0, size.y));
 
             if (rooms[randomRoomPos.y, randomRoomPos.x].instance == null) {
                 NeighboursDescriptor neighbours = GetNeighbours(randomRoomPos);
-                if (neighbours.nb == 1) {
+                if (neighbours.nb == 1 || (neighbours.nb == 2 && Random.Range(1, 10) <= 3)) {
                     rooms[randomRoomPos.y, randomRoomPos.x].instance = FindRoomPrefab(Room.Type.Normal);
                     numberOfGeneratedRooms++;
                 }
@@ -85,9 +87,18 @@ public class ProceduralDungeon : MonoBehaviour
             }
         }
 
-        // Add boss room
-        int farthestRoomIndex = GetFarthestRoomFromList(singleNeighborRooms, startRoomPos);
-        rooms[singleNeighborRooms[farthestRoomIndex].y, singleNeighborRooms[farthestRoomIndex].x].instance = FindRoomPrefab(Room.Type.Boss);
+        // Add start rooms
+        if (singleNeighborRooms.Count == 0) {
+            Generate();
+        }
+
+        int generatedStartRoom = 0;
+        while (singleNeighborRooms.Count > 0 && generatedStartRoom < maxStartRoom) {
+            int farthestRoom = GetFarthestRoomFromList(singleNeighborRooms, startRoomPos);
+            rooms[singleNeighborRooms[farthestRoom].y, singleNeighborRooms[farthestRoom].x].instance = FindRoomPrefab(Room.Type.Start);
+            singleNeighborRooms.RemoveAt(farthestRoom);
+            generatedStartRoom++;
+        }
 
         InstantiateRooms();
 
@@ -111,8 +122,7 @@ public class ProceduralDungeon : MonoBehaviour
             for (int j = 0; j < rooms.GetLength(1); j++)
             {
                 if (rooms[i, j].instance != null) {
-                    Vector2Int size = roomSize;
-                    rooms[i, j].instance = Instantiate(rooms[i, j].instance, new Vector3(j * (size.x + gapBetweenRooms), i * (size.y + gapBetweenRooms), 0), Quaternion.identity, transform);
+                    rooms[i, j].instance = Instantiate(rooms[i, j].instance, new Vector3(j * (roomSize.x + gapBetweenRooms), i * (roomSize.y + gapBetweenRooms), 0), Quaternion.identity, transform);
 
                     // Add corridors and walls
                     NeighboursDescriptor neighbours = GetNeighbours(new Vector2Int(j, i));
@@ -137,14 +147,14 @@ public class ProceduralDungeon : MonoBehaviour
                         wallTilemap.SetTile(new Vector3Int(9, -6, 0), wallTile);
                     }
                     else {
-                        Instantiate(corridorHorizontalPrefab, new Vector3(j * (size.x + gapBetweenRooms) + size.x, i * (size.y + gapBetweenRooms) - size.y / 2 + 2, 0), Quaternion.identity, rooms[i, j].instance.transform);
+                        Instantiate(corridorHorizontalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x, i * (roomSize.y + gapBetweenRooms) - roomSize.y / 2 + 2, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
                     if (neighbours.down == false) {
                         wallTilemap.SetTile(new Vector3Int(4, -10, 0), wallTile);
                         wallTilemap.SetTile(new Vector3Int(5, -10, 0), wallTile);
                     }
                     else {
-                        Instantiate(corridorVerticalPrefab, new Vector3(j * (size.x + gapBetweenRooms) + size.x / 2 - 2, i * (size.y + gapBetweenRooms) - size.y, 0), Quaternion.identity, rooms[i, j].instance.transform);
+                        Instantiate(corridorVerticalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x / 2 - 2, i * (roomSize.y + gapBetweenRooms) - roomSize.y, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
                     if (neighbours.left == false) {
                         wallTilemap.SetTile(new Vector3Int(0, -5, 0), wallTile);
