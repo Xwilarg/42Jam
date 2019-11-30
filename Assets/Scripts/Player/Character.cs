@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class Character : MonoBehaviour
     private GameObject damagePrefab;
 
     private int or = 0;
+    [SerializeField]
+    [Tooltip("Texte to display gold")]
+    private Text goldDisplay;
 
     private void Start()
     {
+        GainOr(20);
     }
 
     public void LooseHp(int value)
@@ -29,5 +34,9 @@ public class Character : MonoBehaviour
         => or;
 
     public int GainOr(int value)
-        => or += value;
+    {
+        or += value;
+        goldDisplay.text = "gold : " + or;
+        return or;
+    }
 }

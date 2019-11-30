@@ -13,6 +13,7 @@ public class Trap : MonoBehaviour
     public int Level;
     public SpriteRenderer upgradeObj;
     public List<Sprite> upgradeSprite;
+    public GameObject _parent;
 
     // Effect
     public GameObject projectile;
@@ -75,8 +76,8 @@ public class Trap : MonoBehaviour
 
     public void Delete()
     {
-        player.GainOr(Cost * Level);
-        Destroy(this.gameObject);
+        player.GainOr(Cost * (Level + 1));
+        Destroy(_parent);
     }
 
     private void OnMouseDown()

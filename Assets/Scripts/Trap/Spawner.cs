@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
 
     public void Delete()
     {
-        player.GainOr(Cost * Level);
+        player.GainOr(Cost * (Level + 1));
         Destroy(this.gameObject);
     }
 
