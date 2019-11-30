@@ -5,10 +5,16 @@ public class HeroController : MonoBehaviour
     [SerializeField]
     private Transform player;
 
-    [SerializeField]
     private HeroClass heroClass;
 
+    private string heroName;
     private const int avoidPlayerLayer = ~(1 << 8 | 1 << 10);
+
+    public void Init(string nameValue, HeroClass heroValue)
+    {
+        heroName = nameValue;
+        heroClass = heroValue;
+    }
 
     private void Update()
     {
@@ -18,7 +24,7 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    private enum HeroClass
+    public enum HeroClass
     {
         Warrior,
         Healer,
