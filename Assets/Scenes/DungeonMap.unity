@@ -235,12 +235,12 @@ MonoBehaviour:
   size: {x: 10, y: 5}
   numberOfRooms: 20
   roomPrefabs:
-  - {fileID: 3912812565970345926, guid: 6f41dbcc8217fe34e8cddecb27d40d58, type: 3}
+  - {fileID: 3912812565970345926, guid: 861807c62a9e480439798f0b2d3f22ea, type: 3}
   - {fileID: 3912812565970345926, guid: bf0bc85a3c5be904e98bde1d68b3f891, type: 3}
-  - {fileID: 3912812565970345926, guid: 4a18baf57711ec54a934d8b188e9fea3, type: 3}
+  - {fileID: 3912812565970345926, guid: 5705d7467c7dfc947b63ca896c5a5436, type: 3}
   corridorHorizontalPrefab: {fileID: 1840535193165831646, guid: d2c4bdf74c80c5345806a917df6a95c9,
     type: 3}
-  corridorVerticalPrefab: {fileID: 1840535193165831646, guid: 32bd562ee2c6ac1409dac983dc7c39ad,
+  corridorVerticalPrefab: {fileID: 1840535193165831646, guid: fc515f6aa18e95f40bb2031c433663bc,
     type: 3}
 --- !u!4 &1818904812
 Transform:
