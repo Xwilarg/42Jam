@@ -556,8 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbc0016973910d42bfbc8f640fa6b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 10, y: 5}
+  size: {x: 9, y: 5}
   numberOfRooms: 20
+  maxStartRoom: 3
   roomPrefabs:
   - {fileID: 3912812565970345926, guid: 861807c62a9e480439798f0b2d3f22ea, type: 3}
   - {fileID: 3912812565970345926, guid: bf0bc85a3c5be904e98bde1d68b3f891, type: 3}
