@@ -39,6 +39,7 @@ public class PartySpawner : MonoBehaviour
         for (int i = 0; i < partySize; i++)
         {
             GameObject go = Instantiate(heroPrefab, transform.position, Quaternion.identity);
+            go.transform.parent = transform.parent;
             go.GetComponent<HeroController>().Init(
                 GenerateName(),
                 (HeroController.HeroClass)Random.Range(0, (int)System.Enum.GetValues(typeof(HeroController.HeroClass)).Cast<HeroController.HeroClass>().Max()));
