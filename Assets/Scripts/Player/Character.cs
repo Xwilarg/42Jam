@@ -9,11 +9,10 @@ public class Character : MonoBehaviour
     [Tooltip("Damage Display Prefab")]
     private GameObject damagePrefab;
 
-    private int or;
+    private int or = 0;
 
     private void Start()
     {
-        or = 0;
     }
 
     public void LooseHp(int value)
