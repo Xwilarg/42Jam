@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         if (collision.tag == "Hero") {
             collision.GetComponent<Character>().LooseHp(damage);
         }
-        if (collision.gameObject != caller && collision.tag != "Projectile") {
+        if (collision.tag == "Hero" || collision.tag == "Wall") {
             Destroy(this.gameObject);
         }
     }

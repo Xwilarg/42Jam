@@ -328,7 +328,7 @@ MonoBehaviour:
     type: 3}
   rate: 1
   power: 100
-  damage: 10
+  damage: 5
 --- !u!50 &3536784753585083395
 Rigidbody2D:
   serializedVersion: 4
