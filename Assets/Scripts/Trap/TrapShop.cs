@@ -32,6 +32,7 @@ public class TrapShop : MonoBehaviour
     public RectTransform tileSelectedDisplay;
     public List<GameObject> _trapTypeDisplay;
     public Text _trapDescription;
+    public GameObject UpgradeShop;
 
     // Start is called before the first frame update
     public void Start()
@@ -50,16 +51,18 @@ public class TrapShop : MonoBehaviour
         _trapTypeDisplay[2].GetComponent<Button>().onClick.AddListener(SetArrows);
         _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
         _trapDescription = GameObject.Find("TrapDescription").GetComponent<Text>();
-        spawnerDescription = "Spawner\n\nInvok a gobelin each 2 seconds to kill adventurer\n\ncost : 20 golds";
-        holeTrapDescription = "Hole\n\nkill 1 adventurer if he come up\n\nCost : 1gold";
-        arrowTrapDescription = "Arrows Wall\n\nSend Arrows while an adventurer come front of them\nCost : 10golds";
-        goldPileDescription = "Gold Pile\n\nLet an amount of gold somewhere, it will help you to earn more golds and take back your money when you need it.\nAdventurer will go on gold in priority";
+        spawnerDescription = "Invocator Gate\n\nInvoke a gobelin every 5 seconds to kill adventurers\n\nCost: 20 golds";
+        holeTrapDescription = "Hole\n\nKill 1 adventurer if we walk on it\n\nCost: 1 gold";
+        arrowTrapDescription = "Arrows Wall\n\nSend arrows when an adventurer come in front of them\nCost: 10 golds";
+        goldPileDescription = "Gold Pile\n\nPut an amount of gold somewhere, it will allow you to accumulate more gold, you can take it back when needed.\nAdventurers will go take in in priority";
         _trapDescription.text = spawnerDescription;
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
         shopPanel = GameObject.Find("Shop");
-        ShopClose();
         trapPlaced = new List<GameObject>();
         shopText = GameObject.FindGameObjectWithTag("ShopText");
+        UpgradeShop = GameObject.Find("UpgradeShop");
+        UpgradeShop.SetActive(false);
+        ShopClose();
     }
 
     // Update is called once per frame
@@ -133,22 +136,21 @@ public class TrapShop : MonoBehaviour
     {
         if (tileSelected._isVisible && !IsTaken(_pos))
         {
-            GameObject _trap;
             if (type == TrapType.spawner && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-                CreateTrap(spawner, _pos);
+                CreateTrap(spawner, _pos, spawner.GetComponent<Spawner>().Cost);
             else if (type == TrapType.arrowTrap && GetComponent<Character>().GetOr() >= arrowTrap.GetComponentInChildren<Trap>().Cost)
-                CreateTrap(arrowTrap, _pos);
-            else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-                CreateTrap(holeTrap, _pos);
+                CreateTrap(arrowTrap, _pos, arrowTrap.GetComponentInChildren<Trap>().Cost);
+            else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= holeTrap.GetComponent<Hole>().Cost)
+                CreateTrap(holeTrap, _pos, holeTrap.GetComponent<Hole>().Cost);
             else if (type == TrapType.gold && GetComponent<Character>().GetOr() >= 20)
-                CreateTrap(goldPile, _pos);
+                CreateTrap(goldPile, _pos, goldPile.GetComponent<GoldPile>().Cost);
         }
     }
 
-    void CreateTrap(GameObject trap, Vector3 _pos)
+    void CreateTrap(GameObject trap, Vector3 _pos, int cost)
     {
         GameObject _trap = Instantiate(trap, _pos, Quaternion.identity);
-        GetComponent<Character>().GainOr(-20);
+        GetComponent<Character>().GainOr(-cost);
         GetComponent<Economy>().UpdateGold();
         trapPlaced.Add(_trap);
     }

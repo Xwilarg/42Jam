@@ -25,6 +25,7 @@ public class Trap : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        panel = player.GetComponent<TrapShop>().UpgradeShop;
     }
 
     private void FixedUpdate()
@@ -63,12 +64,15 @@ public class Trap : MonoBehaviour
             _isTarget = false;
     }
 
+
     public void Upgrade()
     {
         if (player.GetOr() >= Cost)
         {
+            player.GainOr(-Cost * (Level + 1));
             Level += 1;
-            upgradeObj.sprite = upgradeSprite[Level];
+            player.GetComponent<Economy>().UpdateGold();
+            GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
         }
         else
             Debug.Log("Not enough Gold");
@@ -85,5 +89,7 @@ public class Trap : MonoBehaviour
     private void OnMouseDown()
     {
         panel.SetActive(true);
+        panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
+        panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
     }
 }

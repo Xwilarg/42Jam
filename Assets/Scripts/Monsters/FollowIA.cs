@@ -10,10 +10,13 @@ public class FollowIA : MonoBehaviour
     private Collider2D collider2d;
     private GameObject target = null;
     private const float minDistanceToAI = 1f;
+    private Character charac;
+    private const int avoidMonsterLayer = ~(1 << 11);
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
+        charac = GetComponent<Character>();
     }
 
     void Update()
@@ -33,9 +36,26 @@ public class FollowIA : MonoBehaviour
             velocity.Normalize();
             velocity *= speed;
             rb.velocity = velocity;
+            if (Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y))
+            {
+                if (rb.velocity.x > 0f)
+                    transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                else if (rb.velocity.x < 0f)
+                    transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                if (rb.velocity.y > 0f)
+                    transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                else if (rb.velocity.y < 0f)
+                    transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
         }
         else
+        {
             rb.velocity = Vector2.zero;
+            charac.SwordAttack(-rb.transform.right, avoidMonsterLayer);
+        }
     }
 
     void Die()

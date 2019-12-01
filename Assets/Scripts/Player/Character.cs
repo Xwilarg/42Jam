@@ -69,6 +69,9 @@ public class Character : MonoBehaviour
         }
     }
 
+    public int GetHp()
+        => hp;
+
     public int GetOr()
         => or;
 
