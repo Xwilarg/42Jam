@@ -45,6 +45,9 @@ public class Character : MonoBehaviour
             Destroy(gameObject);
     }
 
+    public int GetHp()
+        => hp;
+
     public int GetOr()
         => or;
 

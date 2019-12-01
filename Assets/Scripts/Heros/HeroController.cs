@@ -26,7 +26,7 @@ public class HeroController : MonoBehaviour
         heroName = nameValue;
         heroClass = heroValue;
         path = pathValue;
-        infos.text = "Name: " + heroName + "\nClass: " + heroClass;
+        infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
     }
 
     private void Start()
@@ -41,6 +41,8 @@ public class HeroController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (infos.gameObject.activeInHierarchy)
+            infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
         if (target != null)
         {
             var finalPos = target.position - transform.position;
