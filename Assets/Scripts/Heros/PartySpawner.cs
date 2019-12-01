@@ -87,7 +87,7 @@ public class PartySpawner : MonoBehaviour
             go.transform.parent = transform.parent;
             go.GetComponent<HeroController>().Init(
                 GenerateName(),
-                (HeroController.HeroClass)Random.Range(0, (int)System.Enum.GetValues(typeof(HeroController.HeroClass)).Cast<HeroController.HeroClass>().Max() + 1),
+                HeroController.HeroClass.Warrior,
                 finalPath);
             yield return new WaitForSeconds(spawnInterTimeRef);
         }

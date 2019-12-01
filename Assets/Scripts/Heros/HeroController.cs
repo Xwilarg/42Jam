@@ -174,6 +174,6 @@ public class HeroController : MonoBehaviour
         //Healer,
         //Rogue,
         //Archer,
-        //Mage
+        Mage
     }
 }
