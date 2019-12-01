@@ -501,8 +501,6 @@ GameObject:
   - component: {fileID: 1073684414}
   - component: {fileID: 1073684413}
   - component: {fileID: 1073684412}
-  - component: {fileID: 1073684411}
-  - component: {fileID: 1073684410}
   m_Layer: 0
   m_Name: Main Camera Map
   m_TagString: MainCamera
@@ -510,32 +508,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1073684410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073684409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5189dc457eb17146b041c3a98dc0d3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1073684411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073684409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2c282ef5653104ca9f4ad2973ba474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeStart: 1
-  toAim: Player
 --- !u!81 &1073684412
 AudioListener:
   m_ObjectHideFlags: 0
