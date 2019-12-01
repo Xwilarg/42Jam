@@ -19,8 +19,9 @@ public class TargetTile : MonoBehaviour
         SetInvisible();
     }
 
-    void TileMapSave()
+    public void TileMapSave()
     {
+        _tm = new List<Tilemap>();
         TilemapList = GameObject.FindGameObjectsWithTag("Ground");
         for (int i = 0; i < TilemapList.Length; i++)
         {

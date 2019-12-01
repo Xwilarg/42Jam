@@ -12,9 +12,13 @@ public class TrapShop : MonoBehaviour
 
     // Traps
     public GameObject spawner;
+    public string spawnerDescription;
     public GameObject holeTrap;
+    public string holeTrapDescription;
     public GameObject arrowTrap;
+    public string arrowTrapDescription;
     public GameObject goldPile;
+    public string goldPileDescription;
     public enum TrapType
     {
         spawner,
@@ -27,6 +31,7 @@ public class TrapShop : MonoBehaviour
     public TargetTile tileSelected;
     public RectTransform tileSelectedDisplay;
     public List<GameObject> _trapTypeDisplay;
+    public Text _trapDescription;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,8 @@ public class TrapShop : MonoBehaviour
         cm = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         HeartOfDungeon = GameObject.Find("Dungeon Heart");
+
+        //init shop
         _trapTypeDisplay.Add(GameObject.Find("SpawnSelection"));
         _trapTypeDisplay.Add(GameObject.Find("HoleSelection"));
         _trapTypeDisplay.Add(GameObject.Find("ArrowsSelection"));
@@ -42,6 +49,12 @@ public class TrapShop : MonoBehaviour
         _trapTypeDisplay[1].GetComponent<Button>().onClick.AddListener(SetHole);
         _trapTypeDisplay[2].GetComponent<Button>().onClick.AddListener(SetArrows);
         _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
+        _trapDescription = GameObject.Find("TrapDescription").GetComponent<Text>();
+        spawnerDescription = "Spawner\n\nInvok a gobelin each 2 seconds to kill adventurer\n\ncost : 20 golds";
+        holeTrapDescription = "Hole\n\nkill 1 adventurer if he come up\n\nCost : 1gold";
+        arrowTrapDescription = "Arrows Wall\n\nSend Arrows while an adventurer come front of them\nCost : 10golds";
+        goldPileDescription = "Gold Pile\n\nLet an amount of gold somewhere, it will help you to earn more golds and take back your money when you need it.\nAdventurer will go on gold in priority";
+        _trapDescription.text = spawnerDescription;
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
         shopPanel = GameObject.Find("Shop");
         ShopClose();
@@ -92,24 +105,28 @@ public class TrapShop : MonoBehaviour
     {
         type = TrapType.spawner;
         tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[0].transform.position.y, tileSelectedDisplay.transform.position.z);
+        _trapDescription.text = spawnerDescription;
     }
 
     public void SetHole()
     {
         type = TrapType.holeTrap;
         tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[1].transform.position.y, tileSelectedDisplay.transform.position.z);
+        _trapDescription.text = holeTrapDescription;
     }
 
     public void SetArrows()
     {
         type = TrapType.arrowTrap;
         tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[2].transform.position.y, tileSelectedDisplay.transform.position.z);
+        _trapDescription.text = arrowTrapDescription;
     }
 
     public void SetGoldDisplay()
     {
         type = TrapType.gold;
         tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[3].transform.position.y, tileSelectedDisplay.transform.position.z);
+        _trapDescription.text = goldPileDescription;
     }
 
     void PlaceTrap(Vector3 _pos)
