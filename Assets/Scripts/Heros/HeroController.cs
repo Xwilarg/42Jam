@@ -47,13 +47,25 @@ public class HeroController : MonoBehaviour
             var node = path[index];
 
             if (transform.position.x + minDistNode < node.transform.position.x)
+            {
                 x = 1;
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
             else if (transform.position.x - minDistNode > node.transform.position.x)
+            {
                 x = -1;
+                sr.transform.rotation = Quaternion.identity;
+            }
             if (transform.position.y + minDistNode < node.transform.position.y)
+            {
                 y = 1;
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
             else if (transform.position.y - minDistNode > node.transform.position.y)
+            {
                 y = -1;
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
 
             if (x == 0 && y == 0)
             {
