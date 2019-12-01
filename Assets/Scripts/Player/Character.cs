@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
     {
         if (swordReloadTimer < 0f)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, left, swordRange, layer);
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, 1f, left, swordRange, layer);
             hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
             swordReloadTimer = swordReloadRef;
         }
