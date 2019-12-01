@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bf760d0fada38499a0b75b9f011a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gobelin: {fileID: 6245158337192160806}
+  gobelin: {fileID: 5235662542405532455, guid: a8fff42d91f1a1243ba9850de99e1f1d, type: 3}
   rate: 1
   maxLevel: 2
   Level: 0
@@ -601,7 +601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4181473970783146666
