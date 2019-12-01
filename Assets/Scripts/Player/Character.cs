@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class Character : MonoBehaviour
 
     private int or = 0;
     private float swordReloadTimer;
-    private const float swordRange = 1f;
+    private const float swordRange = 1.5f;
     private const int swordDamage = 10;
     private const float swordReloadRef = 1f;
 
