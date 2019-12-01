@@ -12,6 +12,7 @@ public class Hole : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        panel = player.GetComponent<TrapShop>().UpgradeShop;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +27,8 @@ public class Hole : MonoBehaviour
     private void OnMouseDown()
     {
         panel.SetActive(true);
+        panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
+        panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
     }
 
 

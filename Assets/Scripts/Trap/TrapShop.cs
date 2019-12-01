@@ -32,6 +32,7 @@ public class TrapShop : MonoBehaviour
     public RectTransform tileSelectedDisplay;
     public List<GameObject> _trapTypeDisplay;
     public Text _trapDescription;
+    public GameObject UpgradeShop;
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +58,11 @@ public class TrapShop : MonoBehaviour
         _trapDescription.text = spawnerDescription;
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
         shopPanel = GameObject.Find("Shop");
-        ShopClose();
         trapPlaced = new List<GameObject>();
         shopText = GameObject.FindGameObjectWithTag("ShopText");
+        UpgradeShop = GameObject.Find("UpgradeShop");
+        UpgradeShop.SetActive(false);
+        ShopClose();
     }
 
     // Update is called once per frame

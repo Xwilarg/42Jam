@@ -12,11 +12,14 @@ public class GoldPile : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        panel = player.GetComponent<TrapShop>().UpgradeShop;
     }
 
     private void OnMouseDown()
     {
         panel.SetActive(true);
+        panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
+        panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
     }
 
     public void Delete()
@@ -31,5 +34,18 @@ public class GoldPile : MonoBehaviour
     {
         gold = value;
         player.GetComponent<Economy>().UpdateGold();
+    }
+
+
+    public void Upgrade()
+    {
+        if (player.GetOr() >= Cost)
+        {
+            player.GainOr(-Cost);
+            gold += Cost;
+            player.GetComponent<Economy>().UpdateGold();
+        }
+        else
+            Debug.Log("Not enough Gold");
     }
 }

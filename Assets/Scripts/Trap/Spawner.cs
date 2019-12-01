@@ -21,15 +21,8 @@ public class Spawner : MonoBehaviour
     {
         _mobs = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        panel = player.GetComponent<TrapShop>().UpgradeShop;
         StartCoroutine(cooldown());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-            Upgrade();
-        
     }
 
     IEnumerator cooldown()
@@ -53,7 +46,9 @@ public class Spawner : MonoBehaviour
     {
         if (player.GetOr() >= Cost)
         {
+            player.GainOr(-Cost * (Level + 1));
             Level += 1;
+            player.GetComponent<Economy>().UpdateGold();
             GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
         }
         else
@@ -71,6 +66,8 @@ public class Spawner : MonoBehaviour
     private void OnMouseDown()
     {
         panel.SetActive(true);
+        panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
+        panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
     }
 
     public void MobDying(GameObject mob)
