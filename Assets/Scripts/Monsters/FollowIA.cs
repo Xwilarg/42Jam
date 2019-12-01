@@ -2,6 +2,8 @@
 
 public class FollowIA : MonoBehaviour
 {
+    [HideInInspector]
+    public Spawner _spawnMother;
     public float triggerDistance = 5.0f;
     public float speed = 1.0f;
     private Rigidbody2D rb;
@@ -34,5 +36,10 @@ public class FollowIA : MonoBehaviour
         }
         else
             rb.velocity = Vector2.zero;
+    }
+
+    void Die()
+    {
+        _spawnMother.MobDying(this.gameObject);
     }
 }

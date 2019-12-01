@@ -14,11 +14,14 @@ public class Spawner : MonoBehaviour
     public int Cost;
     private Character player;
     public GameObject panel;
+    private List<GameObject> _mobs;
+    public int maxMob = 10;
 
     private void Start()
     {
+        _mobs = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-        //StartCoroutine(cooldown());
+        StartCoroutine(cooldown());
     }
 
     // Update is called once per frame
@@ -37,7 +40,12 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(gobelin, transform.position, Quaternion.identity);
+        if (_mobs.Count < maxMob)
+        {
+            GameObject mob = Instantiate(gobelin, transform.position, Quaternion.identity);
+            _mobs.Add(mob);
+            mob.GetComponent<FollowIA>()._spawnMother = this;
+        }
         StartCoroutine(cooldown());
     }
 
@@ -63,5 +71,10 @@ public class Spawner : MonoBehaviour
     private void OnMouseDown()
     {
         panel.SetActive(true);
+    }
+
+    public void MobDying(GameObject mob)
+    {
+        _mobs.Remove(mob);
     }
 }
