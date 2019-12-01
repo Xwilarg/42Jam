@@ -89,7 +89,7 @@ public class Trap : MonoBehaviour
     {
         if (player.GetOr() >= Cost)
         {
-            player.GainOr(-Cost * (Level + 1));
+            player.GainOr(-Cost);
             Level += 1;
             damage = (int)(damage * 1.5f);
             player.GetComponent<Economy>().UpdateGold();

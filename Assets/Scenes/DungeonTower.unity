@@ -1450,6 +1450,7 @@ MonoBehaviour:
   hp: 100
   damagePrefab: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
     type: 3}
+  fireballPrefab: {fileID: 0}
 --- !u!61 &1938889032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1492,8 +1493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   iceSpearPrefab: {fileID: 7362382738317152337, guid: 784d6367d961f1042859d3b251b10f85,
-    type: 3}
-  fireballPrefab: {fileID: 6167182838303203358, guid: 9db63bc7b80eb1b448170a8d44457659,
     type: 3}
 --- !u!50 &1938889034
 Rigidbody2D:
@@ -1596,12 +1595,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 810645305}
   spawner: {fileID: 6245158337192160806, guid: 2eaef91b6fc32984b86d37b74d3e4e9d, type: 3}
+  spawnerDescription: 
   holeTrap: {fileID: 8955623642083323668, guid: 888c242bdb2999b448cccf3171e9c85b,
     type: 3}
+  holeTrapDescription: 
   arrowTrap: {fileID: 3536784755087496955, guid: a98b59f80057520458ee24fc36cabc7e,
     type: 3}
+  arrowTrapDescription: 
   goldPile: {fileID: 3124510395843805147, guid: f87b92f9dfceeca4e911dec8062db62f,
     type: 3}
+  goldPileDescription: 
   type: 0
   tileSelected: {fileID: 2012042774}
   tileSelectedDisplay: {fileID: 762683051}
@@ -1610,6 +1613,8 @@ MonoBehaviour:
   - {fileID: 965607410}
   - {fileID: 334084821}
   - {fileID: 1952694291}
+  _trapDescription: {fileID: 0}
+  UpgradeShop: {fileID: 0}
 --- !u!1 &1952694291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4769200288634591377, guid: dcc707864410ac24ea929e3387722e1c,
@@ -1861,6 +1866,75 @@ PrefabInstance:
       objectReference: {fileID: 1938889037}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc707864410ac24ea929e3387722e1c, type: 3}
+--- !u!1001 &5942557609337883707
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1444326857160275828, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_Name
+      value: MudTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960973730758787523, guid: 23b9f5be7e2f9f44eadd71595660e5b8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23b9f5be7e2f9f44eadd71595660e5b8, type: 3}
 --- !u!1001 &7371004787186856695
 PrefabInstance:
   m_ObjectHideFlags: 0

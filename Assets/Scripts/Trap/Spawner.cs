@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
     {
         if (player.GetOr() >= Cost)
         {
-            player.GainOr(-Cost * (Level + 1));
+            player.GainOr(-Cost);
             Level += 1;
             player.GetComponent<Economy>().UpdateGold();
             GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
@@ -73,6 +73,7 @@ public class Spawner : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("Fuck");
         panel.SetActive(true);
         panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
         panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
