@@ -18,7 +18,7 @@ public class PartySpawner : MonoBehaviour
     private Node[] finalPath;
     private const float timerIncRef = 5f;
     private const float timerMin = .1f;
-    private const float incValue = .5f;
+    private const float incValue = .2f;
     private float timerInc;
 
     private void Start()

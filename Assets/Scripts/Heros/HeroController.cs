@@ -86,9 +86,8 @@ public class HeroController : MonoBehaviour
                 }
                 charac.Fireball(-rb.transform.right);
             }
-            rb.velocity = Vector2.zero;
         }
-        else if (target != null)
+        if (target != null)
         {
             var finalPos = target.position - transform.position;
             if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
