@@ -11,7 +11,7 @@ public class TargetTile : MonoBehaviour
     private GameObject Dungeon;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         _tm = new List<Tilemap>();
         Dungeon = GameObject.Find("Dungeon");
@@ -51,6 +51,7 @@ public class TargetTile : MonoBehaviour
 
     bool HasTileInList(Vector3Int pos)
     {
+        TileMapSave();
         for (int i = 0; i < _tm.Count; i++)
         {
             if (_tm[i].HasTile(pos - Vector3Int.FloorToInt(_tm[i].transform.position)))

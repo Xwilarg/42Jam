@@ -48,8 +48,8 @@ public class ProceduralDungeon : MonoBehaviour
         DestroyDungeon();
         yield return new WaitForSeconds(0.5f);
         Generate();
-        Camera.main.GetComponent<ZoomIn>().Reset();
-        GameObject.Find("TargetTile")?.GetComponent<TargetTile>()?.TileMapSave();
+        Camera.main.GetComponent<ZoomIn>()?.Reset();
+        GameObject.Find("TargetTile").GetComponent<TargetTile>().Start();
     }
 
     public void Generate()
