@@ -77,6 +77,8 @@ public class Trap : MonoBehaviour
     public void Delete()
     {
         player.GainOr(Cost * (Level + 1));
+        player.GetComponent<Economy>().UpdateGold();
+        player.GetComponent<TrapShop>().DeleteTrap(this.gameObject);
         Destroy(_parent);
     }
 

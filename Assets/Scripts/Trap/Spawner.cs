@@ -55,6 +55,8 @@ public class Spawner : MonoBehaviour
     public void Delete()
     {
         player.GainOr(Cost * (Level + 1));
+        player.GetComponent<Economy>().UpdateGold();
+        player.GetComponent<TrapShop>().DeleteTrap(this.gameObject);
         Destroy(this.gameObject);
     }
 

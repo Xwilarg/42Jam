@@ -6,6 +6,7 @@ public class TrapShop : MonoBehaviour
 {
     private GameObject player;
     public GameObject shopPanel;
+    private GameObject HeartOfDungeon;
 
     // Traps
     public GameObject spawner;
@@ -29,13 +30,14 @@ public class TrapShop : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        HeartOfDungeon = GameObject.Find("Dungeon Heart");
         trapPlaced = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(player.transform.position, transform.position) < 5 && !shopPanel.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(HeartOfDungeon.transform.position, transform.position) < 5 && !shopPanel.activeInHierarchy)
         {
             ShopOpen();
         }
@@ -85,36 +87,26 @@ public class TrapShop : MonoBehaviour
 
     void PlaceTrap(Vector3 _pos)
     {
-        Debug.Log("oui");
         if (tileSelected._isVisible && !IsTaken(_pos))
         {
-            Debug.Log("bah oui connard");
             GameObject _trap;
-            if (type == TrapType.spawner && player.GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-            {
-                _trap = Instantiate(spawner, _pos, Quaternion.identity);
-                player.GetComponent<Character>().GainOr(-spawner.GetComponent<Spawner>().Cost);
-                trapPlaced.Add(_trap);
-            }
-            else if (type == TrapType.arrowTrap && player.GetComponent<Character>().GetOr() >= arrowTrap.GetComponentInChildren<Trap>().Cost)
-            {
-                _trap = Instantiate(arrowTrap, _pos, Quaternion.identity);
-                player.GetComponent<Character>().GainOr(-arrowTrap.GetComponentInChildren<Trap>().Cost);
-                trapPlaced.Add(_trap);
-            }
-            else if (type == TrapType.holeTrap && player.GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-            {
-                _trap = Instantiate(holeTrap, _pos, Quaternion.identity);
-                player.GetComponent<Character>().GainOr(-spawner.GetComponent<Spawner>().Cost);
-                trapPlaced.Add(_trap);
-            }
-            else if (type == TrapType.gold && player.GetComponent<Character>().GetOr() >= 20)
-            {
-                _trap = Instantiate(goldPile, _pos, Quaternion.identity);
-                player.GetComponent<Character>().GainOr(-20);
-                trapPlaced.Add(_trap);
-            }
+            if (type == TrapType.spawner && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
+                CreateTrap(spawner, _pos);
+            else if (type == TrapType.arrowTrap && GetComponent<Character>().GetOr() >= arrowTrap.GetComponentInChildren<Trap>().Cost)
+                CreateTrap(arrowTrap, _pos);
+            else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
+                CreateTrap(holeTrap, _pos);
+            else if (type == TrapType.gold && GetComponent<Character>().GetOr() >= 20)
+                CreateTrap(goldPile, _pos);
         }
+    }
+
+    void CreateTrap(GameObject trap, Vector3 _pos)
+    {
+        GameObject _trap = Instantiate(trap, _pos, Quaternion.identity);
+        GetComponent<Character>().GainOr(-20);
+        GetComponent<Economy>().UpdateGold();
+        trapPlaced.Add(_trap);
     }
 
     bool IsTaken(Vector3 pos)
@@ -123,6 +115,19 @@ public class TrapShop : MonoBehaviour
         {
             if (trapPlaced[i].transform.position == pos)
                 return true;
+        }
+        return false;
+    }
+
+    public bool DeleteTrap(GameObject trap)
+    {
+        for (int i = 0; i < trapPlaced.Count; i++)
+        {
+            if (trapPlaced[i] == trap)
+            {
+                trapPlaced.RemoveAt(i);
+                return true;
+            }
         }
         return false;
     }
