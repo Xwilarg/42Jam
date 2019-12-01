@@ -7,6 +7,7 @@ public class TrapShop : MonoBehaviour
     public GameObject shopPanel;
     private GameObject HeartOfDungeon;
     private CameraManager cm;
+    private GameObject shopText;
 
     // Traps
     public GameObject spawner;
@@ -41,23 +42,32 @@ public class TrapShop : MonoBehaviour
         shopPanel = GameObject.Find("Shop");
         ShopClose();
         trapPlaced = new List<GameObject>();
+        shopText = GameObject.FindGameObjectWithTag("ShopText");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(HeartOfDungeon.transform.position, transform.position) < 5 && !shopPanel.activeInHierarchy)
+        if (Vector3.Distance(HeartOfDungeon.transform.position, transform.position) < 5)
         {
-            cm.EnableShop();
-            ShopOpen();
+            shopText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E) && !shopPanel.activeInHierarchy)
+            {
+                cm.EnableShop();
+                ShopOpen();
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && shopPanel.activeInHierarchy)
+            {
+                cm.DisableShop();
+                ShopClose();
+            }
+            if (Input.GetMouseButtonDown(0) && shopPanel.activeInHierarchy)
+                PlaceTrap(tileSelected.gameObject.transform.position);
         }
-        else if (Input.GetKeyDown(KeyCode.E) && shopPanel.activeInHierarchy)
+        else
         {
-            cm.DisableShop();
-            ShopClose();
+            shopText.SetActive(false);
         }
-        if (Input.GetMouseButtonDown(0) && shopPanel.activeInHierarchy)
-            PlaceTrap(tileSelected.gameObject.transform.position);
     }
 
     void ShopOpen()

@@ -8,6 +8,7 @@ TagManager:
   - Node
   - Hero
   - Ground
+  - ShopText
   layers:
   - Default
   - TransparentFX
