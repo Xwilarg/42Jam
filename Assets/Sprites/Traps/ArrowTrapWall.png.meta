@@ -59,9 +59,6 @@ TextureImporter:
   - first:
       213: 266841320442795810
     second: ArrowTrapWall_18
-  - first:
-      213: 6495653298883013953
-    second: ArrowTrapWall_19
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -197,27 +194,6 @@ TextureImporter:
       name: ArrowTrapWall_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a591704986254c4fbaee4818fce7f40
-      internalID: 4795853950242844053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArrowTrapWall_1
-      rect:
-        serializedVersion: 2
         x: 32
         y: 0
         width: 32
@@ -229,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfc3d361308ab2242bb7ba7bbe97d48b
-      internalID: -1307171883674101505
+      spriteID: 76011da6308a61841b0cf71f79a85f13
+      internalID: 4795853950242844053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_2
+      name: ArrowTrapWall_1
       rect:
         serializedVersion: 2
         x: 64
@@ -250,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76d67825bfb43274a89b1ce22d27a56b
-      internalID: -3782637403100299931
+      spriteID: b4e7d8863717e0a42b46e1893c500aa4
+      internalID: -1307171883674101505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_3
+      name: ArrowTrapWall_2
       rect:
         serializedVersion: 2
         x: 96
@@ -271,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a9c162856d52694aaf8795f7e6ee02c
-      internalID: 8394647193624045447
+      spriteID: 33fa02d4f14182044933ddcae2798854
+      internalID: -3782637403100299931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_4
+      name: ArrowTrapWall_3
       rect:
         serializedVersion: 2
         x: 128
@@ -292,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c477dafcebc2b2645845952ddfb31e5a
-      internalID: 2228430845153722351
+      spriteID: a4b0bf8c4de66b6409014ac22a4e5d25
+      internalID: 8394647193624045447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_5
+      name: ArrowTrapWall_4
       rect:
         serializedVersion: 2
         x: 160
@@ -313,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ba118ba873e4ab41b0184cc8d77de58
-      internalID: -4014818201497837158
+      spriteID: d45f761f4113178498259d873ad30963
+      internalID: 2228430845153722351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_6
+      name: ArrowTrapWall_5
       rect:
         serializedVersion: 2
         x: 192
@@ -334,14 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf050f103ce94744584b70fd9f227d3a
-      internalID: -3116986736365026728
+      spriteID: d74923c9197105f4faf8029529ee79eb
+      internalID: -4014818201497837158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_7
+      name: ArrowTrapWall_6
       rect:
         serializedVersion: 2
         x: 224
@@ -355,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebc151545fa177845a7f483227ec6050
-      internalID: -5216380390326825443
+      spriteID: 207b154a4422ecc448acac53717de10f
+      internalID: -3116986736365026728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_8
+      name: ArrowTrapWall_7
       rect:
         serializedVersion: 2
         x: 256
@@ -376,14 +352,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36418b7e3065cfa488a3e7b0a7408335
-      internalID: 1452904443004921318
+      spriteID: d217ab009135a984f80ed6320908868d
+      internalID: -5216380390326825443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_9
+      name: ArrowTrapWall_8
       rect:
         serializedVersion: 2
         x: 288
@@ -397,14 +373,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fa97fa2510b62e4298edd950082a5e9
-      internalID: -4970263887869994522
+      spriteID: 162499deccbe6ff4cabc19a5edfaf562
+      internalID: 1452904443004921318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_10
+      name: ArrowTrapWall_9
       rect:
         serializedVersion: 2
         x: 320
@@ -418,14 +394,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f98c0a24a1ca9a9488d0914ff1e84459
-      internalID: -8284171489061727164
+      spriteID: cabf459be95aee44ab6d7589d62c3e7f
+      internalID: -4970263887869994522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_11
+      name: ArrowTrapWall_10
       rect:
         serializedVersion: 2
         x: 352
@@ -439,14 +415,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50eb99165e5bf4b40a4ecc1e06764873
-      internalID: -915957430521675523
+      spriteID: b22b5ce9cb799f84393a0dff3aafb07f
+      internalID: -8284171489061727164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_12
+      name: ArrowTrapWall_11
       rect:
         serializedVersion: 2
         x: 384
@@ -460,14 +436,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dc67b938651ffc4f9530745bd106ef4
-      internalID: 6043919991967186805
+      spriteID: 164d26cbee8cdda47a113ecd9b0d3c63
+      internalID: -915957430521675523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_13
+      name: ArrowTrapWall_12
       rect:
         serializedVersion: 2
         x: 416
@@ -481,14 +457,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fce601ab91477644abc65c2127c05a6
-      internalID: -875166016207286668
+      spriteID: 8d1adcc2c13003341b4165522754da95
+      internalID: 6043919991967186805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_14
+      name: ArrowTrapWall_13
       rect:
         serializedVersion: 2
         x: 448
@@ -502,14 +478,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b19db0bf1bf0444b2a2b25e8e44cb5
-      internalID: 6148107588868231338
+      spriteID: fafccf62fddb119428198e2612efb6df
+      internalID: -875166016207286668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_15
+      name: ArrowTrapWall_14
       rect:
         serializedVersion: 2
         x: 480
@@ -523,14 +499,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f27b86b494f5ba4f8066d37b5329849
-      internalID: 1021210168143678194
+      spriteID: 4627ff7838acfd74785c2eba19b6f2a9
+      internalID: 6148107588868231338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_16
+      name: ArrowTrapWall_15
       rect:
         serializedVersion: 2
         x: 512
@@ -544,14 +520,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fb8f37deee4ff046b184e4269d0a5ab
-      internalID: -3994863319133790899
+      spriteID: fad8e7e1b74cddf4fa12083e4d3b4f16
+      internalID: 1021210168143678194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_17
+      name: ArrowTrapWall_16
       rect:
         serializedVersion: 2
         x: 544
@@ -565,14 +541,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c663a0b940ef4164aa48d0020a9e0dfb
-      internalID: -1643705184127666732
+      spriteID: b371c8d687cc36046a14e7116955d048
+      internalID: -3994863319133790899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_18
+      name: ArrowTrapWall_17
       rect:
         serializedVersion: 2
         x: 576
@@ -586,14 +562,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d71ee12502f12d4c9c56d97aab9f50b
-      internalID: 266841320442795810
+      spriteID: 66f5664aa41943f4ba31acffe219b0ae
+      internalID: -1643705184127666732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ArrowTrapWall_19
+      name: ArrowTrapWall_18
       rect:
         serializedVersion: 2
         x: 608
@@ -607,8 +583,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 620e349298c99ee4c9311dfceaa9ec45
-      internalID: 6495653298883013953
+      spriteID: cdcf153c76fd395408c5d046597e3dbc
+      internalID: 266841320442795810
       vertices: []
       indices: 
       edges: []
