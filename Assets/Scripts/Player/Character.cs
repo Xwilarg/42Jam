@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
     private float fireReloadTimer;
 
     private Character player;
+    private GameObject origine;
 
     private void Start()
     {
@@ -98,6 +99,10 @@ public class Character : MonoBehaviour
                 player.GainOr(or);
                 GameObject.Find("GoldText").GetComponent<Text>().text = "Gold: " + player.GetOr();
             }
+            if (gameObject.tag == "Enemy")
+            {
+                origine.GetComponent<Spawner>().MobDying(gameObject);
+            }
             Destroy(gameObject);
         }
     }
@@ -112,5 +117,10 @@ public class Character : MonoBehaviour
     {
         or += value;
         return or;
+    }
+
+    public void SetOrigin(GameObject spawner)
+    {
+        origine = spawner;
     }
 }
