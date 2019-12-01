@@ -176,7 +176,7 @@ public class HeroController : MonoBehaviour
         //Healer,
         //Rogue,
         //Archer,
-        Mage
+        //Mage
     }
 
     public void MudSlow(float time)
