@@ -36,20 +36,21 @@ public class FollowIA : MonoBehaviour
             velocity.Normalize();
             velocity *= speed;
             rb.velocity = velocity;
-            if (Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y))
-            {
-                if (rb.velocity.x > 0f)
-                    transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                else if (rb.velocity.x < 0f)
-                    transform.rotation = Quaternion.identity;
-            }
-            else
-            {
-                if (rb.velocity.y > 0f)
-                    transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-                else if (rb.velocity.y < 0f)
-                    transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            }
+            transform.rotation = Quaternion.Euler(0f, 0f, - (Mathf.Rad2Deg * Mathf.Atan2(velocity.x, velocity.y)) + 90);
+            // if (Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y))
+            // {
+            //     if (rb.velocity.x > 0f)
+            //         transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            //     else if (rb.velocity.x < 0f)
+            //         transform.rotation = Quaternion.identity;
+            // }
+            // else
+            // {
+            //     if (rb.velocity.y > 0f)
+            //         transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            //     else if (rb.velocity.y < 0f)
+            //         transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            // }
         }
         else
         {
