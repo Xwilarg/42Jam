@@ -71,40 +71,11 @@ public class HeroController : MonoBehaviour
             if (t != null)
             {
                 var finalPos = t.position - transform.position;
-                if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
-                {
-                    if (finalPos.x > 0f)
-                        sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                    else if (finalPos.x < 0f)
-                        sr.transform.rotation = Quaternion.identity;
-                }
-                else
-                {
-                    if (finalPos.y > 0f)
-                        sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-                    else if (finalPos.y < 0f)
-                        sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-                }
                 charac.Fireball(-rb.transform.right);
             }
         }
         if (target != null)
         {
-            var finalPos = target.position - transform.position;
-            if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
-            {
-                if (finalPos.x > 0f)
-                    sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                else if (finalPos.x < 0f)
-                    sr.transform.rotation = Quaternion.identity;
-            }
-            else
-            {
-                if (finalPos.y > 0f)
-                    sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-                else if (finalPos.y < 0f)
-                    sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            }
             rb.velocity = Vector2.zero;
             if (heroClass == HeroClass.Warrior)
                 charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
@@ -118,25 +89,21 @@ public class HeroController : MonoBehaviour
             if (transform.position.x + minDistNode < node.transform.position.x)
             {
                 x = 1;
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                 dir = Vector2.right;
             }
             else if (transform.position.x - minDistNode > node.transform.position.x)
             {
                 x = -1;
-                sr.transform.rotation = Quaternion.identity;
                 dir = Vector2.left;
             }
             if (transform.position.y + minDistNode < node.transform.position.y)
             {
                 y = 1;
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                 dir = Vector2.up;
             }
             else if (transform.position.y - minDistNode > node.transform.position.y)
             {
                 y = -1;
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
                 dir = Vector2.down;
             }
 
@@ -148,12 +115,19 @@ public class HeroController : MonoBehaviour
             }
             else
             {
-                if (dir == null || !Physics.Linecast((Vector2)transform.position + dir.Value, (Vector2)transform.position + dir.Value * 2))
+                if (dir == null || !Physics.Linecast((Vector2)transform.position + dir.Value, (Vector2)transform.position + dir.Value * 2)) {
                     rb.velocity = new Vector2(x, y) * speed;
-                else
+                }
+                else {
                     rb.velocity = Vector2.zero;
+                }
             }
         }
+        float spriteAngle = 180.0f;
+        if (heroClass == HeroClass.Warrior) {
+            spriteAngle = -90.0f;
+        }
+        transform.rotation = Quaternion.Euler(0f, 0f, -(Mathf.Rad2Deg * Mathf.Atan2(rb.velocity.x, rb.velocity.y)) + spriteAngle);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
