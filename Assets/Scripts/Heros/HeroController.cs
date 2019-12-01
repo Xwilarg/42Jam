@@ -5,6 +5,9 @@ public class HeroController : MonoBehaviour
     [SerializeField]
     private TextMesh infos;
 
+    [SerializeField]
+    private Sprite mageSprite;
+
     private SpriteRenderer sr; // Move sr.transform instead of transform
     private Rigidbody2D rb;
     private Character charac;
@@ -18,6 +21,7 @@ public class HeroController : MonoBehaviour
     private const float minDistNode = .5f;
     private const float speed = 4f;
     private const int avoidHeroLayer = ~(1 << 10);
+    private const int avoidPlayerLayer = ~(1 << 8 | 1 << 11);
 
     private Transform target;
 
@@ -28,13 +32,17 @@ public class HeroController : MonoBehaviour
         path = pathValue;
         charac = GetComponent<Character>();
         infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        if (heroClass == HeroClass.Mage)
+        {
+            sr.sprite = mageSprite;
+        }
     }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         objective = GetClosestNode<Node>(player.position, "Node");
-        sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         index = 1;
     }
@@ -43,7 +51,44 @@ public class HeroController : MonoBehaviour
     {
         if (infos.gameObject.activeInHierarchy)
             infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
-        if (target != null)
+        if (heroClass == HeroClass.Mage) // Can see player, battle mode
+        {
+            Transform t = null;
+            if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer))
+                t = player;
+            else
+            {
+                foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    if (!Physics2D.Linecast(transform.position, go.transform.position, avoidPlayerLayer))
+                    {
+                        t = go.transform;
+                        break;
+                    }
+                }
+            }
+            if (t != null)
+            {
+                var finalPos = t.position - transform.position;
+                if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
+                {
+                    if (finalPos.x > 0f)
+                        sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                    else if (finalPos.x < 0f)
+                        sr.transform.rotation = Quaternion.identity;
+                }
+                else
+                {
+                    if (finalPos.y > 0f)
+                        sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                    else if (finalPos.y < 0f)
+                        sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                }
+                charac.Fireball(-rb.transform.right);
+            }
+            rb.velocity = Vector2.zero;
+        }
+        else if (target != null)
         {
             var finalPos = target.position - transform.position;
             if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
@@ -61,12 +106,9 @@ public class HeroController : MonoBehaviour
                     sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             }
             rb.velocity = Vector2.zero;
-            charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
+            if (heroClass == HeroClass.Warrior)
+                charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
         }
-        /*else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
-        {
-            rb.velocity = Vector2.zero;
-        }*/
         else
         {
             int x = 0, y = 0;
@@ -155,9 +197,9 @@ public class HeroController : MonoBehaviour
     public enum HeroClass
     {
         Warrior,
-        Healer,
-        Rogue,
-        Archer,
+        //Healer,
+        //Rogue,
+        //Archer,
         Mage
     }
 }

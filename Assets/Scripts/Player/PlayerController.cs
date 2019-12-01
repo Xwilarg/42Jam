@@ -11,9 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject iceSpearPrefab;
 
-    [SerializeField]
-    private GameObject fireballPrefab;
-
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Character charac;
@@ -21,14 +18,10 @@ public class PlayerController : MonoBehaviour
     private const float iceReloadRef = 5f;
     private const float iceForce = 5f;
     private const int iceDamage = 40;
-    private const float fireReloadRef = 10f;
-    private const float fireForce = 5f;
-    private const int fireDamage = 25;
     private const int avoidPlayerLayer = ~(1 << 8);
     private Vector3 initialPos;
 
     private float iceReloadTimer;
-    private float fireReloadTimer;
 
     private void Start()
     {
@@ -36,7 +29,6 @@ public class PlayerController : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         charac = GetComponent<Character>();
         iceReloadTimer = 0f;
-        fireReloadTimer = 0f;
         initialPos = transform.position;
     }
 
@@ -76,13 +68,9 @@ public class PlayerController : MonoBehaviour
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             iceReloadTimer = iceReloadRef;
         }
-        else if (Input.GetKeyDown(KeyCode.C) && fireReloadTimer < 0f) // Fireball
+        else if (Input.GetKeyDown(KeyCode.C)) // Fireball
         {
-            GameObject go = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            go.transform.rotation = transform.rotation;
-            go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * fireForce, ForceMode2D.Impulse);
-            go.GetComponent<Bullet>().SetDamage(iceDamage);
-            fireReloadTimer = fireReloadRef;
+            charac.Fireball(-sr.transform.right);
         }
         else if (Input.GetKeyDown(KeyCode.V)) // Teleportation to spawn
         {
@@ -91,6 +79,5 @@ public class PlayerController : MonoBehaviour
 
         // Reload time
         iceReloadTimer -= Time.deltaTime;
-        fireReloadTimer -= Time.deltaTime;
     }
 }
