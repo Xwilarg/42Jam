@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private const float fireForce = 5f;
     private const int fireDamage = 8;
     private const int avoidPlayerLayer = ~(1 << 8);
+    private Vector3 initialPos;
 
     private float iceReloadTimer;
     private float fireReloadTimer;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         charac = GetComponent<Character>();
         iceReloadTimer = 0f;
         fireReloadTimer = 0f;
+        initialPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -80,6 +82,10 @@ public class PlayerController : MonoBehaviour
             go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * fireForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             fireReloadTimer = fireReloadRef;
+        }
+        else if (Input.GetKeyDown(KeyCode.V)) // Teleportation to spawn
+        {
+            transform.position = initialPos;
         }
 
         // Reload time
