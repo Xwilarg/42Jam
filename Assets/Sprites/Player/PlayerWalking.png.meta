@@ -160,8 +160,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74433158062c8d042b2b88fc88a3e574
+      spriteID: 8e503b25de90b3848b397fd31a7913d7
       internalID: -3128351650240848657
       vertices: []
       indices: 
@@ -179,10 +179,10 @@ TextureImporter:
       name: PlayerWalking_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 48
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,7 +190,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 450da4f0eea61a640baae062755f6758
+      spriteID: 56bba4dd2496b574c8d6d41ed6bb3f57
       internalID: -5830660520099458109
       vertices: []
       indices: 
@@ -200,10 +200,10 @@ TextureImporter:
       name: PlayerWalking_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 96
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,7 +211,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a52cc525f32fd644b99b243088b14dd
+      spriteID: e34e6f8da2fd9624d87385d578bd7f65
       internalID: -3877850119634150139
       vertices: []
       indices: 
@@ -221,10 +221,10 @@ TextureImporter:
       name: PlayerWalking_3
       rect:
         serializedVersion: 2
-        x: 114
+        x: 144
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,7 +232,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 257c1262e23fbec498415972a0c0b480
+      spriteID: fa36d11cf5a1093409cfa6aa58f64b4e
       internalID: 7011344482617516438
       vertices: []
       indices: 
@@ -242,10 +242,10 @@ TextureImporter:
       name: PlayerWalking_4
       rect:
         serializedVersion: 2
-        x: 152
+        x: 192
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,7 +253,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ed0c7ef24ac2e5478c821639bb00c62
+      spriteID: 24407499340128f46a02255230acd05f
       internalID: 3756217731161235094
       vertices: []
       indices: 
@@ -263,10 +263,10 @@ TextureImporter:
       name: PlayerWalking_5
       rect:
         serializedVersion: 2
-        x: 190
+        x: 240
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,7 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e384c3eca7b8f74b829f92b7115e224
+      spriteID: 7e015427efcf6984c9dec56f40a55dce
       internalID: -3358549846494895355
       vertices: []
       indices: 
@@ -284,10 +284,10 @@ TextureImporter:
       name: PlayerWalking_6
       rect:
         serializedVersion: 2
-        x: 228
+        x: 288
         y: 0
-        width: 38
-        height: 22
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,7 +295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ecc04bdd5374924a9376638ecc6342b
+      spriteID: 6dd437c50122d934886262602a035343
       internalID: 6391813760598695730
       vertices: []
       indices: 
