@@ -133,7 +133,6 @@ public class TrapShop : MonoBehaviour
     {
         if (tileSelected._isVisible && !IsTaken(_pos))
         {
-            GameObject _trap;
             if (type == TrapType.spawner && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
                 CreateTrap(spawner, _pos);
             else if (type == TrapType.arrowTrap && GetComponent<Character>().GetOr() >= arrowTrap.GetComponentInChildren<Trap>().Cost)

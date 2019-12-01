@@ -20,7 +20,7 @@ public class HeroController : MonoBehaviour
     private const float speed = 4f;
     private const int avoidHeroLayer = ~(1 << 10);
 
-    private bool enemyInRange;
+    private Transform target;
 
     public void Init(string nameValue, HeroClass heroValue, Node[] pathValue)
     {
@@ -38,15 +38,13 @@ public class HeroController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         charac = GetComponent<Character>();
         index = 1;
-        enemyInRange = false;
     }
 
     private void FixedUpdate()
     {
-        if (enemyInRange)
+        if (target != null)
         {
-            var enPos = GetClosestNode<Character>(transform.position, "Enemy").transform;
-            var finalPos = enPos.position - transform.position;
+            var finalPos = target.position - transform.position;
             if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
             {
                 if (finalPos.x > 0f)
@@ -64,10 +62,10 @@ public class HeroController : MonoBehaviour
             rb.velocity = Vector2.zero;
             charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
         }
-        else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
+        /*else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
         {
             rb.velocity = Vector2.zero;
-        }
+        }*/
         else
         {
             int x = 0, y = 0;
@@ -117,14 +115,14 @@ public class HeroController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-            enemyInRange = true;
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
+            target = collision.transform;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-            enemyInRange = false;
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
+            target = null;
     }
 
     private void OnMouseEnter()
