@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -22,6 +24,11 @@ public class PlayerController : MonoBehaviour
 
     private float iceReloadTimer;
 
+    private GameObject swordSkill;
+    private GameObject fireBallSkill;
+    private GameObject iceSpearSkill;
+    private GameObject teleportSkill;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +36,41 @@ public class PlayerController : MonoBehaviour
         charac = GetComponent<Character>();
         iceReloadTimer = 0f;
         initialPos = transform.position;
+
+        GameObject skillBar = GameObject.Find("SkillBar");
+        foreach (Transform child in skillBar.transform)
+        {
+            if (child.name == "Sword")
+            {
+                swordSkill = child.gameObject;
+            }
+            else if (child.name == "FireBall")
+            {
+                fireBallSkill = child.gameObject;
+                foreach (Transform text in fireBallSkill.transform)
+                {
+                    if (text.name == "ReloadTime")
+                    {
+                        text.gameObject.GetComponent<Text>().text = charac.getFireReload().ToString() + "s";
+                    }
+                }
+            }
+            else if (child.name == "IceSpear")
+            {
+                iceSpearSkill = child.gameObject;
+                foreach (Transform text in iceSpearSkill.transform)
+                {
+                    if (text.name == "ReloadTime")
+                    {
+                        text.GetComponent<Text>().text = iceReloadRef.ToString() + "s";
+                    }
+                }
+            }
+            else if (child.name == "Teleport")
+            {
+                teleportSkill = child.gameObject;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -61,6 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.X) && iceReloadTimer < 0f) // Ice spear
         {
+            StartCoroutine(changeImageColor(iceSpearSkill, iceReloadRef));
             GameObject go = Instantiate(iceSpearPrefab, transform.position, Quaternion.identity);
             go.transform.rotation = transform.rotation;
             go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * iceForce, ForceMode2D.Impulse);
@@ -69,6 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.C)) // Fireball
         {
+            StartCoroutine(changeImageColor(fireBallSkill, charac.getFireReload()));
             charac.Fireball(-sr.transform.right);
         }
         else if (Input.GetKeyDown(KeyCode.V)) // Teleportation to spawn
@@ -78,5 +122,13 @@ public class PlayerController : MonoBehaviour
 
         // Reload time
         iceReloadTimer -= Time.deltaTime;
+    }
+
+    private IEnumerator changeImageColor(GameObject obj, float time)
+    {
+        Color color = obj.GetComponent<Image>().color;
+        obj.GetComponent<Image>().color = new Color(255, 0, 0);
+        yield return new WaitForSeconds(time);
+        obj.GetComponent<Image>().color = color;
     }
 }
