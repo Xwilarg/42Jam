@@ -72,26 +72,31 @@ public class HeroController : MonoBehaviour
         {
             int x = 0, y = 0;
             var node = path[index];
+            Vector2? dir = null;
 
             if (transform.position.x + minDistNode < node.transform.position.x)
             {
                 x = 1;
                 sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                dir = Vector2.right;
             }
             else if (transform.position.x - minDistNode > node.transform.position.x)
             {
                 x = -1;
                 sr.transform.rotation = Quaternion.identity;
+                dir = Vector2.left;
             }
             if (transform.position.y + minDistNode < node.transform.position.y)
             {
                 y = 1;
                 sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                dir = Vector2.up;
             }
             else if (transform.position.y - minDistNode > node.transform.position.y)
             {
                 y = -1;
                 sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                dir = Vector2.down;
             }
 
             if (x == 0 && y == 0)
@@ -102,7 +107,12 @@ public class HeroController : MonoBehaviour
                     rb.velocity = Vector2.zero;
             }
             else
-                rb.velocity = new Vector2(x, y) * speed;
+            {
+                if (dir == null || !Physics.Linecast((Vector2)transform.position + dir.Value, (Vector2)transform.position + dir.Value * 2))
+                    rb.velocity = new Vector2(x, y) * speed;
+                else
+                    rb.velocity = Vector2.zero;
+            }
         }
     }
 
