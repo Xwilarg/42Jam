@@ -5,10 +5,14 @@ using UnityEngine.UI;
 public class TrapShop : MonoBehaviour
 {
     private GameObject player;
+    private Character playerC;
     public GameObject shopPanel;
     private GameObject HeartOfDungeon;
     private CameraManager cm;
     private GameObject shopText;
+
+    private const float healTimerRef = .2f;
+    private float healTimer;
 
     // Traps
     public GameObject spawner;
@@ -39,6 +43,7 @@ public class TrapShop : MonoBehaviour
     {
         cm = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraManager>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerC = player.GetComponent<Character>();
         HeartOfDungeon = GameObject.Find("Dungeon Heart");
 
         //init shop
@@ -63,6 +68,7 @@ public class TrapShop : MonoBehaviour
         UpgradeShop = GameObject.Find("UpgradeShop");
         UpgradeShop.SetActive(false);
         ShopClose();
+        healTimer = 0f;
     }
 
     // Update is called once per frame
@@ -87,6 +93,19 @@ public class TrapShop : MonoBehaviour
         else
         {
             shopText.SetActive(false);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Vector3.Distance(HeartOfDungeon.transform.position, transform.position) < 5)
+        {
+            healTimer -= Time.deltaTime;
+            if (healTimer < 0f)
+            {
+                playerC.LooseHp(-1);
+                healTimer = healTimerRef;
+            }
         }
     }
 
