@@ -10,7 +10,7 @@ public class ZoomIn : MonoBehaviour
     private Transform toAimGo;
 
     private const float speed = 2f;
-    private const float minFoV = 40f;
+    private const float minFoV = 60f;
     private float baseFov;
     private float maxFov;
     private Vector3 basePos;
