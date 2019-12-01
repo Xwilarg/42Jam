@@ -42,7 +42,22 @@ public class HeroController : MonoBehaviour
     {
         if (enemyInRange)
         {
-            var closestEnnemy = GetClosestNode<Character>(transform.position, "Enemy");
+            var enPos = GetClosestNode<Character>(transform.position, "Enemy").transform;
+            var finalPos = enPos.position - transform.position;
+            if (Mathf.Abs(finalPos.x) > Mathf.Abs(finalPos.y))
+            {
+                if (finalPos.x > 0f)
+                    sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                else if (finalPos.x < 0f)
+                    sr.transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                if (finalPos.y > 0f)
+                    sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                else if (finalPos.y < 0f)
+                    sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
             rb.velocity = Vector2.zero;
         }
         else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
@@ -89,12 +104,14 @@ public class HeroController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        enemyInRange = true;
+        if (collision.CompareTag("Enemy"))
+            enemyInRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        enemyInRange = false;
+        if (collision.CompareTag("Enemy"))
+            enemyInRange = false;
     }
 
     private void OnMouseEnter()

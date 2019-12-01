@@ -7,6 +7,7 @@ public class FollowIA : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D collider2d;
     private GameObject target = null;
+    private const float minDistanceToAI = 1f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,11 +26,13 @@ public class FollowIA : MonoBehaviour
             }
         }
 
-        if (target != null) {
+        if (target != null && minDistance > minDistanceToAI) {
             Vector2 velocity = target.transform.position - transform.position;
             velocity.Normalize();
             velocity *= speed;
             rb.velocity = velocity;
         }
+        else
+            rb.velocity = Vector2.zero;
     }
 }
