@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private float iceReloadTimer;
     private float fireReloadTimer;
-    private Text hpDisplay;
 
     private void Start()
     {
@@ -39,8 +38,6 @@ public class PlayerController : MonoBehaviour
         iceReloadTimer = 0f;
         fireReloadTimer = 0f;
         initialPos = transform.position;
-        hpDisplay = GameObject.Find("HPText").GetComponent<Text>();
-        hpDisplay.text = "HP:" + charac.GetHp();
     }
 
     private void FixedUpdate()
@@ -66,7 +63,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        hpDisplay.text = "HP:" + charac.GetHp();
         // Attacks
         if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
         {
