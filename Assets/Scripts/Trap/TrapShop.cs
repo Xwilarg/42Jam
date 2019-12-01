@@ -31,6 +31,14 @@ public class TrapShop : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         HeartOfDungeon = GameObject.Find("Dungeon Heart");
+        _trapTypeDisplay.Add(GameObject.Find("SpawnSelection"));
+        _trapTypeDisplay.Add(GameObject.Find("HoleSelection"));
+        _trapTypeDisplay.Add(GameObject.Find("ArrowsSelection"));
+        _trapTypeDisplay.Add(GameObject.Find("GoldSelection"));
+        tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
+        tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
+        shopPanel = GameObject.Find("Shop");
+        ShopClose();
         trapPlaced = new List<GameObject>();
     }
 

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5572888951869507331}
   - component: {fileID: 6755218901170030453}
   - component: {fileID: 4418906635628514690}
+  - component: {fileID: 1476489355459264816}
+  - component: {fileID: 4225260368435939393}
   m_Layer: 8
   m_Name: PlayerContainer
   m_TagString: Player
@@ -114,6 +116,43 @@ MonoBehaviour:
     type: 3}
   fireballPrefab: {fileID: 6167182838303203358, guid: 9db63bc7b80eb1b448170a8d44457659,
     type: 3}
+--- !u!114 &1476489355459264816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90114340793262356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47875ec38dcbe374ebafa03b2a2cec5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopPanel: {fileID: 0}
+  spawner: {fileID: 6245158337192160806, guid: 2eaef91b6fc32984b86d37b74d3e4e9d, type: 3}
+  holeTrap: {fileID: 8955623642083323668, guid: 888c242bdb2999b448cccf3171e9c85b,
+    type: 3}
+  arrowTrap: {fileID: 3536784755087496955, guid: a98b59f80057520458ee24fc36cabc7e,
+    type: 3}
+  goldPile: {fileID: 3124510395843805147, guid: f87b92f9dfceeca4e911dec8062db62f,
+    type: 3}
+  type: 0
+  tileSelected: {fileID: 0}
+  tileSelectedDisplay: {fileID: 0}
+  _trapTypeDisplay: []
+--- !u!114 &4225260368435939393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90114340793262356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a2f53bef50a50459d39e469556d000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldDisplay: {fileID: 0}
 --- !u!1 &6965341631880782209
 GameObject:
   m_ObjectHideFlags: 0
