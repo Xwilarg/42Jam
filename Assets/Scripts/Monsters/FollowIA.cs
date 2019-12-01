@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FollowIA : MonoBehaviour
 {
@@ -8,7 +6,6 @@ public class FollowIA : MonoBehaviour
     public float speed = 1.0f;
     private Rigidbody2D rb;
     private Collider2D collider2d;
-    private bool startMoving = false;
     private GameObject target = null;
     void Start()
     {
