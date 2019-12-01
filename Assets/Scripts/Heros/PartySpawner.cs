@@ -10,9 +10,9 @@ public class PartySpawner : MonoBehaviour
 
     private const float spawnTimeRef = 5f;
     private const float spawnInterTimeRef = .5f;
-    private const float spawnChance = 50; // %
+    private const float spawnChance = 20; // %
     private const int partyMinSize = 1;
-    private const int partyMaxSize = 2;
+    private const int partyMaxSize = 1;
     private float spawnTime;
     private Node firstNode, finalNode;
     private Node[] finalPath;
