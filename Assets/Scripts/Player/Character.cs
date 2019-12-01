@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
     private const float swordReloadRef = 1f;
     private GameObject healthBar = null;
     private const float fireReloadRef = 10f;
-    private const float fireForce = 5f;
+    private const float fireForce = 10f;
     private const int fireDamage = 25;
     private float fireReloadTimer;
 
@@ -40,10 +40,7 @@ public class Character : MonoBehaviour
             }
         }
         if (CompareTag("Hero"))
-        {
-            or = 5;
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-        }
         else
             player = null;
     }
@@ -74,7 +71,7 @@ public class Character : MonoBehaviour
     {
         if (fireReloadTimer < 0f)
         {
-            GameObject go = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(fireballPrefab, transform.position + left / 2f, Quaternion.identity);
             go.transform.rotation = transform.rotation;
             go.GetComponent<Rigidbody2D>().AddForce(left * fireForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(fireDamage);

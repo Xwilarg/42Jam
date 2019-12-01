@@ -21,7 +21,7 @@ public class HeroController : MonoBehaviour
     private const float minDistNode = .5f;
     private const float speed = 4f;
     private const int avoidHeroLayer = ~(1 << 10);
-    private const int avoidPlayerLayer = ~(1 << 8 | 1 << 11);
+    private const int avoidPlayerLayer = ~(1 << 8 | 1 << 11 | 1 << 10);
 
     private Transform target;
 
@@ -45,15 +45,16 @@ public class HeroController : MonoBehaviour
         objective = GetClosestNode<Node>(player.position, "Node");
         rb = GetComponent<Rigidbody2D>();
         index = 1;
+        charac.GainOr(Random.Range(10, 21));
     }
 
     private void FixedUpdate()
     {
         if (infos.gameObject.activeInHierarchy)
             infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
+        Transform t = null;
         if (heroClass == HeroClass.Mage) // Can see player, battle mode
         {
-            Transform t = null;
             if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer))
                 t = player;
             else
@@ -108,7 +109,7 @@ public class HeroController : MonoBehaviour
             if (heroClass == HeroClass.Warrior)
                 charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
         }
-        else
+        else if (t == null)
         {
             int x = 0, y = 0;
             var node = path[index];
