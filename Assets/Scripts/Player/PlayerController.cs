@@ -43,6 +43,13 @@ public class PlayerController : MonoBehaviour
             if (child.name == "Sword")
             {
                 swordSkill = child.gameObject;
+                foreach (Transform text in swordSkill.transform)
+                {
+                    if (text.name == "ReloadTime")
+                    {
+                        text.gameObject.GetComponent<Text>().text = charac.getSwordReload().ToString() + "s";
+                    }
+                }
             }
             else if (child.name == "FireBall")
             {
@@ -99,6 +106,7 @@ public class PlayerController : MonoBehaviour
         // Attacks
         if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
         {
+            StartCoroutine(changeImageColor(swordSkill, charac.getSwordReload()));
             charac.SwordAttack(-sr.transform.right, avoidPlayerLayer);
         }
         else if (Input.GetKeyDown(KeyCode.X) && iceReloadTimer < 0f) // Ice spear

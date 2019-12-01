@@ -68,6 +68,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public float getSwordReload()
+    {
+        return swordReloadRef;
+    }
+
     public void Fireball(Vector3 left)
     {
         if (fireReloadTimer < 0f)
