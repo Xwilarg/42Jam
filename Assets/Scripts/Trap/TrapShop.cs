@@ -182,5 +182,6 @@ public class TrapShop : MonoBehaviour
     {
         shopPanel.SetActive(true);
         tileSelected.gameObject.SetActive(true);
+        UpgradeShop.SetActive(true);
     }
 }
