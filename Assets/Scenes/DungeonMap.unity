@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725477844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.4, y: 21.1, z: -10}
+  m_LocalPosition: {x: 72.35, y: 18.81, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -339,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835032894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.4, y: 21.1, z: -10}
+  m_LocalPosition: {x: 72.35, y: 12.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -543,7 +543,7 @@ Camera:
   far clip plane: 1000
   field of view: 150
   orthographic: 1
-  orthographic size: 37.450165
+  orthographic size: 30
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -567,7 +567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073684409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.4, y: 21.1, z: -10}
+  m_LocalPosition: {x: 72.35, y: 18.81, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -765,6 +765,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7633192350885006000, guid: dcc707864410ac24ea929e3387722e1c,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Invocator Gate
+
+
+        Invoke a gobelin every 2 seconds to kill adventurers
+
+
+        Cost: 20 golds'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc707864410ac24ea929e3387722e1c, type: 3}
 --- !u!1 &1553993623
@@ -802,7 +813,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: -10}
-  m_SizeDelta: {x: 160, y: 90}
+  m_SizeDelta: {x: 480, y: 270}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1553993625
 MonoBehaviour:
