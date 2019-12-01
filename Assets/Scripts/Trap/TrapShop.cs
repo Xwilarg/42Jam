@@ -51,9 +51,9 @@ public class TrapShop : MonoBehaviour
         _trapTypeDisplay[2].GetComponent<Button>().onClick.AddListener(SetArrows);
         _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
         _trapDescription = GameObject.Find("TrapDescription").GetComponent<Text>();
-        spawnerDescription = "Invocator Gate\n\nInvoke a gobelin every 5 seconds to kill adventurers\n\nCost: 20 golds";
-        holeTrapDescription = "Hole\n\nKill 1 adventurer if we walk on it\n\nCost: 1 gold";
-        arrowTrapDescription = "Arrows Wall\n\nSend arrows when an adventurer come in front of them\nCost: 10 golds";
+        spawnerDescription = "Invocator Gate\n\nInvoke a gobelin every 5 seconds to kill adventurers\n\nCost: 70 golds";
+        holeTrapDescription = "Hole\n\nKill 1 adventurer if we walk on it\n\nCost: 25 gold";
+        arrowTrapDescription = "Arrows Wall\n\nSend arrows when an adventurer come in front of them\nCost: 110 golds";
         goldPileDescription = "Gold Pile\n\nPut an amount of gold somewhere, it will allow you to accumulate more gold, you can take it back when needed.\nAdventurers will go take in in priority";
         _trapDescription.text = spawnerDescription;
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();

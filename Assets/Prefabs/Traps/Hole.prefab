@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17eb1f0be6136747801fb3e474c5731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 1
+  Cost: 25
   panel: {fileID: 8367347521432119035}
 --- !u!1001 &1209087557696030881
 PrefabInstance:

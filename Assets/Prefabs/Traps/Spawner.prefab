@@ -103,7 +103,7 @@ MonoBehaviour:
   upgradeSprite:
   - {fileID: 21300000, guid: 228d9220de2e1ea4a911d2d979b0db56, type: 3}
   - {fileID: 21300000, guid: 8d452fbb28408f64486d24e43fe99533, type: 3}
-  Cost: 20
+  Cost: 70
   panel: {fileID: 114990647486889075}
   maxMob: 10
 --- !u!61 &8530029592570906932

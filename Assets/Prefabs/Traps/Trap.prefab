@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 386148054321466359}
-  Cost: 10
+  Cost: 110
   maxLevel: 1
   Level: 0
   upgradeObj: {fileID: 0}
