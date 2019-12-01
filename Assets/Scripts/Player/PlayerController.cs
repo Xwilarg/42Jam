@@ -91,16 +91,16 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y))
         {
             if (rb.velocity.x > 0f)
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             else if (rb.velocity.x < 0f)
-                sr.transform.rotation = Quaternion.identity;
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
         }
         else
         {
             if (rb.velocity.y > 0f)
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
             else if (rb.velocity.y < 0f)
-                sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                sr.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
 
@@ -119,15 +119,15 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(changeImageColor(iceSpearSkill, iceReloadRef));
             GameObject go = Instantiate(iceSpearPrefab, transform.position, Quaternion.identity);
-            go.transform.rotation = sr.transform.rotation;
-            go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * iceForce, ForceMode2D.Impulse);
+            go.transform.rotation = Quaternion.Euler(0, 0, Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y) ? 0f : 90f);
+            go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.up * iceForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             iceReloadTimer = iceReloadRef;
         }
         else if (Input.GetKeyDown(KeyCode.C)) // Fireball
         {
             StartCoroutine(changeImageColor(fireBallSkill, charac.getFireReload()));
-            charac.Fireball(-sr.transform.right);
+            charac.Fireball(-sr.transform.up);
         }
         else if (Input.GetKeyDown(KeyCode.V)) // Teleportation to spawn
         {
