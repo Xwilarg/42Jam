@@ -8,11 +8,11 @@ public class PartySpawner : MonoBehaviour
     [SerializeField]
     private GameObject heroPrefab;
 
-    private const float spawnTimeRef = 10f;
+    private const float spawnTimeRef = 5f;
     private const float spawnInterTimeRef = .5f;
-    private const float spawnChance = 30; // %
-    private const int partyMinSize = 2;
-    private const int partyMaxSize = 6;
+    private const float spawnChance = 50; // %
+    private const int partyMinSize = 1;
+    private const int partyMaxSize = 2;
     private float spawnTime;
     private Node firstNode, finalNode;
     private Node[] finalPath;
@@ -24,7 +24,6 @@ public class PartySpawner : MonoBehaviour
         List<Node> path = new List<Node>();
         finalNode = HeroController.GetClosestNode<Node>(GameObject.FindGameObjectWithTag("Player").transform.position, "Node");
         finalPath = GetShortestWay(path, firstNode).ToArray();
-        StartCoroutine("SpawnParty");
     }
 
     private void Update()
