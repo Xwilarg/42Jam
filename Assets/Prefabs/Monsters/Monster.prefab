@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5235662542405532448}
   - component: {fileID: 8734673847523277719}
   - component: {fileID: 2858348212176899436}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -158,5 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c690d70980e09e49b7a532d9f0a40f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnMother: {fileID: 0}
   triggerDistance: 7
   speed: 3

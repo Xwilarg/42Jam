@@ -11,7 +11,6 @@ public class HeroController : MonoBehaviour
     private Transform player;
     private HeroClass heroClass;
     private string heroName;
-    private const int avoidPlayerLayer = ~(1 << 8 | 1 << 10);
     private Node[] path;
     private Node objective; // Destination the heroes need to reach
     private int index;
