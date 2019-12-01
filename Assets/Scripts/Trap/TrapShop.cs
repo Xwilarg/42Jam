@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrapShop : MonoBehaviour
 {
@@ -36,7 +37,10 @@ public class TrapShop : MonoBehaviour
         _trapTypeDisplay.Add(GameObject.Find("HoleSelection"));
         _trapTypeDisplay.Add(GameObject.Find("ArrowsSelection"));
         _trapTypeDisplay.Add(GameObject.Find("GoldSelection"));
-        tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
+        _trapTypeDisplay[0].GetComponent<Button>().onClick.AddListener(SetSpawner);
+        _trapTypeDisplay[1].GetComponent<Button>().onClick.AddListener(SetHole);
+        _trapTypeDisplay[2].GetComponent<Button>().onClick.AddListener(SetArrows);
+        _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
         shopPanel = GameObject.Find("Shop");
         ShopClose();
@@ -63,12 +67,14 @@ public class TrapShop : MonoBehaviour
     void ShopOpen()
     {
         shopPanel.SetActive(true);
+        tileSelected.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
 
     void ShopClose()
     {
         shopPanel.SetActive(false);
+        tileSelected.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 

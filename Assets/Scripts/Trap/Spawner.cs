@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-        //StartCoroutine(cooldown());
+        StartCoroutine(cooldown());
     }
 
     // Update is called once per frame
