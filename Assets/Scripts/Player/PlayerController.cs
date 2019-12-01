@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -18,16 +19,17 @@ public class PlayerController : MonoBehaviour
     private Character charac;
 
     private const float iceReloadRef = 5f;
-    private const float iceForce = 5f;
+    private const float iceForce = 25f;
     private const int iceDamage = 5;
     private const float fireReloadRef = 10f;
     private const float fireForce = 5f;
-    private const int fireDamage = 8;
+    private const int fireDamage = 15;
     private const int avoidPlayerLayer = ~(1 << 8);
     private Vector3 initialPos;
 
     private float iceReloadTimer;
     private float fireReloadTimer;
+    private Text hpDisplay;
 
     private void Start()
     {
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
         iceReloadTimer = 0f;
         fireReloadTimer = 0f;
         initialPos = transform.position;
+        hpDisplay = GameObject.Find("HPText").GetComponent<Text>();
+        hpDisplay.text = "HP:" + charac.GetHp();
     }
 
     private void FixedUpdate()
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        hpDisplay.text = "HP:" + charac.GetHp();
         // Attacks
         if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
         {

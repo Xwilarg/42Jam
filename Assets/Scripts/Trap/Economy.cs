@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Economy : MonoBehaviour
@@ -14,11 +12,11 @@ public class Economy : MonoBehaviour
         player = GetComponent<Character>();
         player.GainOr(100);
         goldDisplay = GameObject.Find("GoldText").GetComponent<Text>();
-        goldDisplay.text = "gold : " + player.GetOr();
+        goldDisplay.text = "Gold: " + player.GetOr();
     }
 
     public void UpdateGold()
     {
-        goldDisplay.text = "gold : " + player.GetOr();
+        goldDisplay.text = "Gold: " + player.GetOr();
     }
 }

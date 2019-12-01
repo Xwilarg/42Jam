@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896611e57069dfa4db70bdc3763d4c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 100
   damagePrefab: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
     type: 3}
 --- !u!61 &5572888951869507331
@@ -145,6 +145,7 @@ MonoBehaviour:
   tileSelectedDisplay: {fileID: 0}
   _trapTypeDisplay: []
   _trapDescription: {fileID: 0}
+  UpgradeShop: {fileID: 0}
 --- !u!114 &4225260368435939393
 MonoBehaviour:
   m_ObjectHideFlags: 0
