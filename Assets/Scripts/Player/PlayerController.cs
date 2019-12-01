@@ -15,19 +15,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Character charac;
 
-    private const float swordRange = 1f;
-    private const int avoidPlayerLayer = ~(1 << 8);
-    private const int swordDamage = 10;
-    private const float swordReloadRef = 1f;
     private const float iceReloadRef = 5f;
     private const float iceForce = 5f;
     private const int iceDamage = 5;
     private const float fireReloadRef = 10f;
     private const float fireForce = 5f;
     private const int fireDamage = 8;
+    private const int avoidPlayerLayer = ~(1 << 8);
 
-    private float swordReloadTimer;
     private float iceReloadTimer;
     private float fireReloadTimer;
 
@@ -35,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
-        swordReloadTimer = 0f;
+        charac = GetComponent<Character>();
         iceReloadTimer = 0f;
         fireReloadTimer = 0f;
     }
@@ -64,11 +61,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Attacks
-        if (Input.GetKeyDown(KeyCode.Z) && swordReloadTimer < 0f) // Sword attack
+        if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -sr.transform.right, swordRange, avoidPlayerLayer);
-            hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
-            swordReloadTimer = swordReloadRef;
+            charac.SwordAttack(-sr.transform.right, avoidPlayerLayer);
         }
         else if (Input.GetKeyDown(KeyCode.X) && iceReloadTimer < 0f) // Ice spear
         {
@@ -88,7 +83,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Reload time
-        swordReloadTimer -= Time.deltaTime;
         iceReloadTimer -= Time.deltaTime;
         fireReloadTimer -= Time.deltaTime;
     }

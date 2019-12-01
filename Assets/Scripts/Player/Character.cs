@@ -11,6 +11,30 @@ public class Character : MonoBehaviour
     private GameObject damagePrefab;
 
     private int or = 0;
+    private float swordReloadTimer;
+    private const float swordRange = 1f;
+    private const int swordDamage = 10;
+    private const float swordReloadRef = 1f;
+
+    private void Start()
+    {
+        swordReloadTimer = 0f;
+    }
+
+    private void Update()
+    {
+        swordReloadTimer -= Time.deltaTime;
+    }
+
+    public void SwordAttack(Vector3 left, int layer)
+    {
+        if (swordReloadTimer < 0f)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, left, swordRange, layer);
+            hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
+            swordReloadTimer = swordReloadRef;
+        }
+    }
 
     public void LooseHp(int value)
     {

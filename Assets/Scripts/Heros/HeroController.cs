@@ -7,6 +7,7 @@ public class HeroController : MonoBehaviour
 
     private SpriteRenderer sr; // Move sr.transform instead of transform
     private Rigidbody2D rb;
+    private Character charac;
     private Transform player;
     private HeroClass heroClass;
     private string heroName;
@@ -17,6 +18,7 @@ public class HeroController : MonoBehaviour
 
     private const float minDistNode = .5f;
     private const float speed = 7f;
+    private const int avoidHeroLayer = ~(1 << 10);
 
     private bool enemyInRange;
 
@@ -34,6 +36,7 @@ public class HeroController : MonoBehaviour
         objective = GetClosestNode<Node>(player.position, "Node");
         sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        charac = GetComponent<Character>();
         index = 1;
         enemyInRange = false;
     }
@@ -59,6 +62,7 @@ public class HeroController : MonoBehaviour
                     sr.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             }
             rb.velocity = Vector2.zero;
+            charac.SwordAttack(-rb.transform.right, avoidHeroLayer);
         }
         else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
         {
