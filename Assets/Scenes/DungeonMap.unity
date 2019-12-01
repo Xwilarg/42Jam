@@ -967,12 +967,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 9, y: 5}
-  numberOfRooms: 20
+  numberOfRooms: 10
   maxStartRoom: 3
   roomPrefabs:
   - {fileID: 3912812565970345926, guid: 861807c62a9e480439798f0b2d3f22ea, type: 3}
   - {fileID: 3912812565970345926, guid: bf0bc85a3c5be904e98bde1d68b3f891, type: 3}
   - {fileID: 3912812565970345926, guid: 5705d7467c7dfc947b63ca896c5a5436, type: 3}
+  - {fileID: 3912812565970345926, guid: 258dbf777632a864883035617811181c, type: 3}
+  - {fileID: 3912812565970345926, guid: e8b6d5025471d6546a13e7f9b1206588, type: 3}
   corridorHorizontalPrefab: {fileID: 1840535193165831646, guid: d2c4bdf74c80c5345806a917df6a95c9,
     type: 3}
   corridorVerticalPrefab: {fileID: 1840535193165831646, guid: fc515f6aa18e95f40bb2031c433663bc,
