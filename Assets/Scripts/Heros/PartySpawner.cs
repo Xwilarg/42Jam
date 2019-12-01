@@ -20,9 +20,9 @@ public class PartySpawner : MonoBehaviour
     private void Start()
     {
         spawnTime = spawnTimeRef;
-        firstNode = HeroController.GetClosestNode(transform.position);
+        firstNode = HeroController.GetClosestNode<Node>(transform.position, "Node");
         List<Node> path = new List<Node>();
-        finalNode = HeroController.GetClosestNode(GameObject.FindGameObjectWithTag("Player").transform.position);
+        finalNode = HeroController.GetClosestNode<Node>(GameObject.FindGameObjectWithTag("Player").transform.position, "Node");
         finalPath = GetShortestWay(path, firstNode).ToArray();
         StartCoroutine("SpawnParty");
     }

@@ -18,6 +18,8 @@ public class HeroController : MonoBehaviour
     private const float minDistNode = .5f;
     private const float speed = 7f;
 
+    private bool enemyInRange;
+
     public void Init(string nameValue, HeroClass heroValue, Node[] pathValue)
     {
         heroName = nameValue;
@@ -29,15 +31,21 @@ public class HeroController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        objective = GetClosestNode(player.position);
+        objective = GetClosestNode<Node>(player.position, "Node");
         sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         index = 1;
+        enemyInRange = false;
     }
 
     private void FixedUpdate()
     {
-        if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
+        if (enemyInRange)
+        {
+            var closestEnnemy = GetClosestNode<Character>(transform.position, "Enemy");
+            rb.velocity = Vector2.zero;
+        }
+        else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
         {
 
         }
@@ -79,6 +87,16 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        enemyInRange = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        enemyInRange = false;
+    }
+
     private void OnMouseEnter()
     {
         infos.gameObject.SetActive(true);
@@ -89,11 +107,11 @@ public class HeroController : MonoBehaviour
         infos.gameObject.SetActive(false);
     }
 
-    public static Node GetClosestNode(Vector2 pos)
+    public static T GetClosestNode<T>(Vector2 pos, string tag)
     {
         float dist = float.MaxValue;
         GameObject closest = null;
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Node"))
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag(tag))
         {
             float currDist = Vector2.Distance(go.transform.position, pos);
             if (closest == null || currDist < dist)
@@ -102,7 +120,7 @@ public class HeroController : MonoBehaviour
                 dist = currDist;
             }
         }
-        return closest.GetComponent<Node>();
+        return closest.GetComponent<T>();
     }
 
     public enum HeroClass
