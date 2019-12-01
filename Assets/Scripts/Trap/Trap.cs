@@ -21,7 +21,7 @@ public class Trap : MonoBehaviour
     private bool _isTarget = false;
     public float rate;
     public float power;
-    public int damage = 10;
+    public int damage = 5;
 
     private void Start()
     {
@@ -80,7 +80,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player" || collision.tag == "Hero")
+        if (collision.tag == "Hero")
             _isTarget = false;
     }
 

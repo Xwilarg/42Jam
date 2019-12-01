@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - ShopText
   - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
