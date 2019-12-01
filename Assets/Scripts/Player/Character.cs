@@ -83,8 +83,13 @@ public class Character : MonoBehaviour
     public void LooseHp(int value)
     {
         Vector3 pos = new Vector3(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), -1f);
-        GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
-        go.GetComponent<TextMesh>().text = "-" + value;
+        if (value > 0 || hp != maxHp)
+        {
+            GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
+            go.GetComponent<TextMesh>().text = "-" + value;
+            if (value < 0)
+                go.GetComponent<TextMesh>().color = Color.green;
+        }
 
         healthBar.transform.localScale = new Vector3(Mathf.InverseLerp(0, maxHp, hp), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
@@ -105,6 +110,8 @@ public class Character : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        if (hp > maxHp)
+            hp = maxHp;
     }
 
     public int GetHp()
