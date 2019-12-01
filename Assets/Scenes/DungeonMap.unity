@@ -765,6 +765,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7633192350885006000, guid: dcc707864410ac24ea929e3387722e1c,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Invocator Gate
+
+
+        Invoke a gobelin every 2 seconds to kill adventurers
+
+
+        Cost: 20 golds'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc707864410ac24ea929e3387722e1c, type: 3}
 --- !u!1 &1553993623
