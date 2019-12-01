@@ -8,7 +8,7 @@ public class PartySpawner : MonoBehaviour
     [SerializeField]
     private GameObject heroPrefab;
 
-    private const float spawnTimeRef = 5f;
+    private float spawnTimeRef = 5f;
     private const float spawnInterTimeRef = .5f;
     private const float spawnChance = 20; // %
     private const int partyMinSize = 1;
@@ -16,6 +16,10 @@ public class PartySpawner : MonoBehaviour
     private float spawnTime;
     private Node firstNode, finalNode;
     private Node[] finalPath;
+    private const float timerIncRef = 5f;
+    private const float timerMin = .1f;
+    private const float incValue = .5f;
+    private float timerInc;
 
     private void Start()
     {
@@ -24,11 +28,13 @@ public class PartySpawner : MonoBehaviour
         List<Node> path = new List<Node>();
         finalNode = HeroController.GetClosestNode<Node>(GameObject.FindGameObjectWithTag("Player").transform.position, "Node");
         finalPath = GetShortestWay(path, firstNode).ToArray();
+        timerInc = timerIncRef;
     }
 
     private void Update()
     {
         spawnTime -= Time.deltaTime;
+        timerInc -= Time.deltaTime;
         if (spawnTime < 0f)
         {
             if (Random.Range(0, 100) < spawnChance)
@@ -36,6 +42,13 @@ public class PartySpawner : MonoBehaviour
                 StartCoroutine("SpawnParty");
             }
             spawnTime = spawnTimeRef;
+        }
+        if (timerInc < 0f)
+        {
+            spawnTimeRef -= incValue;
+            if (spawnTimeRef < timerMin)
+                spawnTimeRef = timerMin;
+            timerInc = timerIncRef;
         }
     }
 
