@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  swooshGo: {fileID: 2169537861674305709, guid: 8b873e41820c9fc48be615787f9bebb8,
+    type: 3}
   iceSpearPrefab: {fileID: 7362382738317152337, guid: 784d6367d961f1042859d3b251b10f85,
     type: 3}
 --- !u!114 &1476489355459264816

@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private GameObject swooshGo;
+
+    [SerializeField]
     private GameObject iceSpearPrefab;
 
     private Rigidbody2D rb;
@@ -107,7 +110,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)) // Sword attack
         {
             StartCoroutine(changeImageColor(swordSkill, charac.getSwordReload()));
-            charac.SwordAttack(-sr.transform.right, avoidPlayerLayer);
+            if (charac.SwordAttack(-sr.transform.right, avoidPlayerLayer))
+            {
+                Instantiate(swooshGo, transform.position + -sr.transform.right, Quaternion.identity);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.X) && iceReloadTimer < 0f) // Ice spear
         {

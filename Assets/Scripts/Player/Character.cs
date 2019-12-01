@@ -58,14 +58,16 @@ public class Character : MonoBehaviour
 #endif
     }
 
-    public void SwordAttack(Vector3 left, int layer)
+    public bool SwordAttack(Vector3 left, int layer)
     {
         if (swordReloadTimer < 0f)
         {
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, 1f, left, swordRange, layer);
             hit.collider?.GetComponent<Character>()?.LooseHp(swordDamage);
             swordReloadTimer = swordReloadRef;
+            return true;
         }
+        return false;
     }
 
     public float getSwordReload()
