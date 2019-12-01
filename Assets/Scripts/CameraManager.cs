@@ -7,22 +7,15 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private GameObject shopUI;
 
-    private void Update()
+    public void EnableShop()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (playerCamera.activeInHierarchy)
-            {
-                playerCamera.SetActive(false);
-                placementCamera.SetActive(true);
-                shopUI.SetActive(true);
-            }
-            else
-            {
-                playerCamera.SetActive(true);
-                placementCamera.SetActive(false);
-                shopUI.SetActive(false);
-            }
-        }
+        playerCamera.SetActive(false);
+        placementCamera.SetActive(true);
+    }
+
+    public void DisableShop()
+    {
+        playerCamera.SetActive(true);
+        placementCamera.SetActive(false);
     }
 }

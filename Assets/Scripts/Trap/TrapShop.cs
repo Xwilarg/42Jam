@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapShop : MonoBehaviour
@@ -7,6 +6,7 @@ public class TrapShop : MonoBehaviour
     private GameObject player;
     public GameObject shopPanel;
     private GameObject HeartOfDungeon;
+    private CameraManager cm;
 
     // Traps
     public GameObject spawner;
@@ -29,6 +29,7 @@ public class TrapShop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cm = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         HeartOfDungeon = GameObject.Find("Dungeon Heart");
         _trapTypeDisplay.Add(GameObject.Find("SpawnSelection"));
@@ -47,10 +48,12 @@ public class TrapShop : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(HeartOfDungeon.transform.position, transform.position) < 5 && !shopPanel.activeInHierarchy)
         {
+            cm.EnableShop();
             ShopOpen();
         }
         else if (Input.GetKeyDown(KeyCode.E) && shopPanel.activeInHierarchy)
         {
+            cm.DisableShop();
             ShopClose();
         }
         if (Input.GetMouseButtonDown(0) && shopPanel.activeInHierarchy)
