@@ -241,7 +241,7 @@ public class ProceduralDungeon : MonoBehaviour
         }
     }
 
-    private void DestroyDungeon()
+    public void DestroyDungeon()
     {
         if (rooms != null) {
             for (int i = 0; i < rooms.GetLength(0); i++)

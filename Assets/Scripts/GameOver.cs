@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameIsOver && Input.anyKeyDown) {
+        if (gameIsOver && Input.GetKeyDown(KeyCode.Return)) {
             Restart();
         }
     }
