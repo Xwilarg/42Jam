@@ -134,20 +134,20 @@ public class TrapShop : MonoBehaviour
         if (tileSelected._isVisible && !IsTaken(_pos))
         {
             if (type == TrapType.spawner && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-                CreateTrap(spawner, _pos);
+                CreateTrap(spawner, _pos, spawner.GetComponent<Spawner>().Cost);
             else if (type == TrapType.arrowTrap && GetComponent<Character>().GetOr() >= arrowTrap.GetComponentInChildren<Trap>().Cost)
-                CreateTrap(arrowTrap, _pos);
-            else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= spawner.GetComponent<Spawner>().Cost)
-                CreateTrap(holeTrap, _pos);
+                CreateTrap(arrowTrap, _pos, arrowTrap.GetComponentInChildren<Trap>().Cost);
+            else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= holeTrap.GetComponent<Hole>().Cost)
+                CreateTrap(holeTrap, _pos, holeTrap.GetComponent<Hole>().Cost);
             else if (type == TrapType.gold && GetComponent<Character>().GetOr() >= 20)
-                CreateTrap(goldPile, _pos);
+                CreateTrap(goldPile, _pos, goldPile.GetComponent<GoldPile>().Cost);
         }
     }
 
-    void CreateTrap(GameObject trap, Vector3 _pos)
+    void CreateTrap(GameObject trap, Vector3 _pos, int cost)
     {
         GameObject _trap = Instantiate(trap, _pos, Quaternion.identity);
-        GetComponent<Character>().GainOr(-20);
+        GetComponent<Character>().GainOr(-cost);
         GetComponent<Economy>().UpdateGold();
         trapPlaced.Add(_trap);
     }
