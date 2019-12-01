@@ -151,8 +151,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 11
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ce37366c76e3334e929313ae8aa71af
+      spriteID: 62f78483e052f8243aa6a7a1500920ae
       internalID: -1450167211875230987
       vertices: []
       indices: 
@@ -170,10 +170,10 @@ TextureImporter:
       name: MakeFireballAnim_1
       rect:
         serializedVersion: 2
-        x: 11
+        x: 32
         y: 0
-        width: 11
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,7 +181,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44fd05d69adfb9945a209bde0d9768e4
+      spriteID: 460a9cae92f0c5b4e896edcb41d917ea
       internalID: 1087558445675194286
       vertices: []
       indices: 
@@ -191,10 +191,10 @@ TextureImporter:
       name: MakeFireballAnim_2
       rect:
         serializedVersion: 2
-        x: 22
+        x: 64
         y: 0
-        width: 11
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61722f0e5cf78164cbf9da823d62c92a
+      spriteID: f46103e10ecbd504dad7701a4b28b308
       internalID: 8094093963796695026
       vertices: []
       indices: 
@@ -212,10 +212,10 @@ TextureImporter:
       name: MakeFireballAnim_3
       rect:
         serializedVersion: 2
-        x: 33
+        x: 96
         y: 0
-        width: 11
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,7 +223,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ead4eefcf1f25748b3be65ab5fdec2f
+      spriteID: 1c065296823823141aeef6d7f20021ed
       internalID: -5727501664667926961
       vertices: []
       indices: 

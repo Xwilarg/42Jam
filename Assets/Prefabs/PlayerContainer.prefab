@@ -52,6 +52,8 @@ MonoBehaviour:
   hp: 100
   damagePrefab: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
     type: 3}
+  fireballPrefab: {fileID: 6167182838303203358, guid: 9db63bc7b80eb1b448170a8d44457659,
+    type: 3}
 --- !u!61 &5572888951869507331
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113,8 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   iceSpearPrefab: {fileID: 7362382738317152337, guid: 784d6367d961f1042859d3b251b10f85,
-    type: 3}
-  fireballPrefab: {fileID: 6167182838303203358, guid: 9db63bc7b80eb1b448170a8d44457659,
     type: 3}
 --- !u!114 &1476489355459264816
 MonoBehaviour:

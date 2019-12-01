@@ -52,6 +52,8 @@ MonoBehaviour:
   hp: 50
   damagePrefab: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
     type: 3}
+  fireballPrefab: {fileID: 6167182838303203358, guid: 9db63bc7b80eb1b448170a8d44457659,
+    type: 3}
 --- !u!114 &7620219333329367777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infos: {fileID: 2701064236708781390}
+  mageSprite: {fileID: -8180171696930044909, guid: fdcff8b4edfce30488342ddd120e5f40,
+    type: 3}
 --- !u!61 &5461606557075797402
 BoxCollider2D:
   m_ObjectHideFlags: 0

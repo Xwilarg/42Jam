@@ -154,8 +154,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 38
+        width: 48
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40f72cbaec73e714c88bda6b6e4414c7
+      spriteID: f122f747caa4b4b49b7bee7770d02613
       internalID: 301407954960579717
       vertices: []
       indices: 
@@ -173,10 +173,10 @@ TextureImporter:
       name: PlayerBasicAttack_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 48
         y: 0
-        width: 40
-        height: 38
+        width: 48
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dddd1f31be91f1847be9707d94490006
+      spriteID: c2e14673ebb4dab418e006797b007ca1
       internalID: 1553334737220135272
       vertices: []
       indices: 
@@ -194,10 +194,10 @@ TextureImporter:
       name: PlayerBasicAttack_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 0
-        width: 40
-        height: 38
+        width: 48
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,7 +205,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78d5bd99202482242b8e077c630d6d7c
+      spriteID: efef1be6f48348743874f57f3624bb81
       internalID: -4603982595112151160
       vertices: []
       indices: 
@@ -215,10 +215,10 @@ TextureImporter:
       name: PlayerBasicAttack_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 144
         y: 0
-        width: 40
-        height: 38
+        width: 48
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a665cb825d3971545934556592ecbeb6
+      spriteID: 7b7ee184e4306f848b6fceacaa560d78
       internalID: -7963890048054116246
       vertices: []
       indices: 
@@ -236,10 +236,10 @@ TextureImporter:
       name: PlayerBasicAttack_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 40
-        height: 38
+        width: 48
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,7 +247,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2c903a6c4e26614d8def823373b8696
+      spriteID: 5b5da035eeee4cd4c8c8407c1be3b400
       internalID: -1207938897070870375
       vertices: []
       indices: 
