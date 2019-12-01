@@ -18,7 +18,7 @@ public class PartySpawner : MonoBehaviour
     private Node[] finalPath;
     private const float timerIncRef = 5f;
     private const float timerMin = .1f;
-    private const float incValue = .5f;
+    private const float incValue = .2f;
     private float timerInc;
 
     private void Start()
@@ -87,7 +87,7 @@ public class PartySpawner : MonoBehaviour
             go.transform.parent = transform.parent;
             go.GetComponent<HeroController>().Init(
                 GenerateName(),
-                (HeroController.HeroClass)Random.Range(0, (int)System.Enum.GetValues(typeof(HeroController.HeroClass)).Cast<HeroController.HeroClass>().Max()),
+                (HeroController.HeroClass)Random.Range(0, (int)System.Enum.GetValues(typeof(HeroController.HeroClass)).Cast<HeroController.HeroClass>().Max() + 1),
                 finalPath);
             yield return new WaitForSeconds(spawnInterTimeRef);
         }

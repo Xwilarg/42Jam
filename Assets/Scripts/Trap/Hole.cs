@@ -20,6 +20,7 @@ public class Hole : MonoBehaviour
         if (collision.tag == "Hero")
         {
             Destroy(collision.gameObject);
+            player.GetComponent<TrapShop>().DeleteTrap(this.gameObject);
             Destroy(this.gameObject);
         }
     }

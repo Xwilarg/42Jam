@@ -16,19 +16,25 @@ public class Spawner : MonoBehaviour
     public GameObject panel;
     private List<GameObject> _mobs;
     public int maxMob = 10;
+    private bool _isCooldown = false;
 
     private void Start()
     {
         _mobs = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         panel = player.GetComponent<TrapShop>().UpgradeShop;
-        StartCoroutine(cooldown());
+    }
+
+    private void Update()
+    {
+        if (!_isCooldown)
+            Spawn();
     }
 
     IEnumerator cooldown()
     {
         yield return new WaitForSeconds(rate);
-        Spawn();
+        _isCooldown = false;
     }
 
     void Spawn()
@@ -38,8 +44,10 @@ public class Spawner : MonoBehaviour
             GameObject mob = Instantiate(gobelin, transform.position, Quaternion.identity, gameObject.transform);
             _mobs.Add(mob);
             mob.GetComponent<FollowIA>()._spawnMother = this;
+            mob.GetComponent<Character>().SetOrigin(this.gameObject);
+            _isCooldown = true;
+            StartCoroutine(cooldown());
         }
-        StartCoroutine(cooldown());
     }
 
     public void Upgrade()

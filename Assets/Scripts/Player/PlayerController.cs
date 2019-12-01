@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -16,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private Character charac;
 
     private const float iceReloadRef = 5f;
-    private const float iceForce = 5f;
+    private const float iceForce = 20f;
     private const int iceDamage = 40;
     private const int avoidPlayerLayer = ~(1 << 8);
     private Vector3 initialPos;

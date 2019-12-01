@@ -21,11 +21,12 @@ public class Character : MonoBehaviour
     private const float swordReloadRef = 1f;
     private GameObject healthBar = null;
     private const float fireReloadRef = 10f;
-    private const float fireForce = 5f;
+    private const float fireForce = 10f;
     private const int fireDamage = 25;
     private float fireReloadTimer;
 
     private Character player;
+    private GameObject origine;
 
     private void Start()
     {
@@ -40,10 +41,7 @@ public class Character : MonoBehaviour
             }
         }
         if (CompareTag("Hero"))
-        {
-            or = 5;
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-        }
         else
             player = null;
     }
@@ -74,7 +72,7 @@ public class Character : MonoBehaviour
     {
         if (fireReloadTimer < 0f)
         {
-            GameObject go = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(fireballPrefab, transform.position + left / 2f, Quaternion.identity);
             go.transform.rotation = transform.rotation;
             go.GetComponent<Rigidbody2D>().AddForce(left * fireForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(fireDamage);
@@ -85,8 +83,13 @@ public class Character : MonoBehaviour
     public void LooseHp(int value)
     {
         Vector3 pos = new Vector3(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), -1f);
-        GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
-        go.GetComponent<TextMesh>().text = "-" + value;
+        if (value > 0 || hp != maxHp)
+        {
+            GameObject go = Instantiate(damagePrefab, pos, Quaternion.identity);
+            go.GetComponent<TextMesh>().text = "-" + value;
+            if (value < 0)
+                go.GetComponent<TextMesh>().color = Color.green;
+        }
 
         healthBar.transform.localScale = new Vector3(Mathf.InverseLerp(0, maxHp, hp), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
@@ -101,8 +104,14 @@ public class Character : MonoBehaviour
                 player.GainOr(or);
                 GameObject.Find("GoldText").GetComponent<Text>().text = "Gold: " + player.GetOr();
             }
+            if (gameObject.tag == "Enemy")
+            {
+                origine.GetComponent<Spawner>().MobDying(gameObject);
+            }
             Destroy(gameObject);
         }
+        if (hp > maxHp)
+            hp = maxHp;
     }
 
     public int GetHp()
@@ -115,5 +124,10 @@ public class Character : MonoBehaviour
     {
         or += value;
         return or;
+    }
+
+    public void SetOrigin(GameObject spawner)
+    {
+        origine = spawner;
     }
 }
