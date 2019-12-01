@@ -36,7 +36,7 @@ public class FollowIA : MonoBehaviour
             velocity.Normalize();
             velocity *= speed;
             rb.velocity = velocity;
-            transform.rotation = Quaternion.Euler(0f, 0f, - (Mathf.Rad2Deg * Mathf.Atan2(velocity.x, velocity.y)) + 90);
+            GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.Euler(0f, 0f, - (Mathf.Rad2Deg * Mathf.Atan2(velocity.x, velocity.y)) + 90);
         }
         else
         {

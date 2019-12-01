@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(changeImageColor(iceSpearSkill, iceReloadRef));
             GameObject go = Instantiate(iceSpearPrefab, transform.position, Quaternion.identity);
-            go.transform.rotation = transform.rotation;
+            go.transform.rotation = sr.transform.rotation;
             go.GetComponent<Rigidbody2D>().AddForce(-sr.transform.right * iceForce, ForceMode2D.Impulse);
             go.GetComponent<Bullet>().SetDamage(iceDamage);
             iceReloadTimer = iceReloadRef;

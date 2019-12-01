@@ -127,7 +127,7 @@ public class HeroController : MonoBehaviour
         if (heroClass == HeroClass.Warrior) {
             spriteAngle = -90.0f;
         }
-        transform.rotation = Quaternion.Euler(0f, 0f, -(Mathf.Rad2Deg * Mathf.Atan2(rb.velocity.x, rb.velocity.y)) + spriteAngle);
+        sr.transform.rotation = Quaternion.Euler(0f, 0f, -(Mathf.Rad2Deg * Mathf.Atan2(rb.velocity.x, rb.velocity.y)) + spriteAngle);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
