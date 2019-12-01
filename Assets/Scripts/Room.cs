@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
 
     public enum Type
     {
+        Empty,
         Normal,
         Start,
         Boss

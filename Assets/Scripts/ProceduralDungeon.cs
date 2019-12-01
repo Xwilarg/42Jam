@@ -14,6 +14,7 @@ public class ProceduralDungeon : MonoBehaviour
     private struct RoomDescriptor
     {
         public GameObject instance;
+        public Room.Type type;
     };
 
     private RoomDescriptor[,] rooms = null;
@@ -55,20 +56,27 @@ public class ProceduralDungeon : MonoBehaviour
         DestroyDungeon();
 
         rooms = new RoomDescriptor[size.y, size.x];
+        for (int i = 0; i < size.y; i++)
+        {
+            for (int j = 0; j < size.x; j++)
+            {
+                rooms[i, j].type = Room.Type.Empty;
+            }
+        }
         
         Vector2Int startRoomPos = new Vector2Int(size.x - 1, (size.y - 1) / 2);
-        rooms[startRoomPos.y, startRoomPos.x].instance = FindRoomPrefab(Room.Type.Boss);
-        rooms[startRoomPos.y, startRoomPos.x - 1].instance = FindRoomPrefab(Room.Type.Normal);
+        rooms[startRoomPos.y, startRoomPos.x].type = Room.Type.Boss;
+        rooms[startRoomPos.y, startRoomPos.x - 1].type = Room.Type.Normal;
 
         uint maxIter = 0;
         uint numberOfGeneratedRooms = 2;
         while (numberOfGeneratedRooms < numberOfRooms) {
             Vector2Int randomRoomPos = new Vector2Int(Random.Range(0, size.x - 2), Random.Range(0, size.y));
 
-            if (rooms[randomRoomPos.y, randomRoomPos.x].instance == null) {
+            if (rooms[randomRoomPos.y, randomRoomPos.x].type == Room.Type.Empty) {
                 NeighboursDescriptor neighbours = GetNeighbours(randomRoomPos);
-                if (neighbours.nb == 1 || (neighbours.nb == 2 && Random.Range(1, 10) <= 3)) {
-                    rooms[randomRoomPos.y, randomRoomPos.x].instance = FindRoomPrefab(Room.Type.Normal);
+                if (neighbours.nb == 1 || (neighbours.nb == 2 && Random.Range(0, 100) < 30)) {
+                    rooms[randomRoomPos.y, randomRoomPos.x].type = Room.Type.Normal;
                     numberOfGeneratedRooms++;
                 }
             }
@@ -87,7 +95,7 @@ public class ProceduralDungeon : MonoBehaviour
         {
             for (int j = 0; j < size.x; j++)
             {
-                if (rooms[i, j].instance != null && rooms[i, j].instance.GetComponent<Room>().type == Room.Type.Normal)
+                if (rooms[i, j].type == Room.Type.Normal)
                 {
                     NeighboursDescriptor neighbours = GetNeighbours(new Vector2Int(j, i));
 
@@ -107,7 +115,7 @@ public class ProceduralDungeon : MonoBehaviour
         int generatedStartRoom = 0;
         while (singleNeighborRooms.Count > 0 && generatedStartRoom < maxStartRoom) {
             int farthestRoom = GetFarthestRoomFromList(singleNeighborRooms, startRoomPos);
-            rooms[singleNeighborRooms[farthestRoom].y, singleNeighborRooms[farthestRoom].x].instance = FindRoomPrefab(Room.Type.Start);
+            rooms[singleNeighborRooms[farthestRoom].y, singleNeighborRooms[farthestRoom].x].type = Room.Type.Start;
             singleNeighborRooms.RemoveAt(farthestRoom);
             generatedStartRoom++;
         }
@@ -117,15 +125,31 @@ public class ProceduralDungeon : MonoBehaviour
         LinkNodes();
     }
 
-    private GameObject FindRoomPrefab(Room.Type type)
+    private GameObject FindRoomPrefab(Vector2Int index, Room.Type type)
     {
+        List<GameObject> potentialRooms = new List<GameObject>();
+
         foreach (GameObject roomPrefab in roomPrefabs)
         {
-            if (roomPrefab.GetComponent<Room>().type == type) {
-                return roomPrefab;
+            Room room = roomPrefab.GetComponent<Room>();
+            if (room.type == type) {
+                NeighboursDescriptor neighbours = GetNeighbours(index);
+
+                if (((neighbours.up == true && room.up != Room.CanHaveNeighbour.No) || (neighbours.up == false && room.up != Room.CanHaveNeighbour.Yes))
+                 && ((neighbours.right == true && room.right != Room.CanHaveNeighbour.No) || (neighbours.right == false && room.right != Room.CanHaveNeighbour.Yes))
+                 && ((neighbours.down == true && room.down != Room.CanHaveNeighbour.No) || (neighbours.down == false && room.down != Room.CanHaveNeighbour.Yes))
+                 && ((neighbours.left == true && room.left != Room.CanHaveNeighbour.No) || (neighbours.left == false && room.left != Room.CanHaveNeighbour.Yes))) {
+                    potentialRooms.Add(roomPrefab);
+                }
             }
         }
-        return null;
+
+        if (potentialRooms.Count == 0) {
+            Debug.LogError("Can't find suitable room!");
+            return null;
+        }
+
+        return potentialRooms[Random.Range(0, potentialRooms.Count)];
     }
 
     private void InstantiateRooms()
@@ -133,7 +157,8 @@ public class ProceduralDungeon : MonoBehaviour
         for (int i = 0; i < rooms.GetLength(0); i++) {
             for (int j = 0; j < rooms.GetLength(1); j++)
             {
-                if (rooms[i, j].instance != null) {
+                if (rooms[i, j].type != Room.Type.Empty) {
+                    rooms[i, j].instance = FindRoomPrefab(new Vector2Int(j, i), rooms[i, j].type);
                     rooms[i, j].instance = Instantiate(rooms[i, j].instance, new Vector3(j * (roomSize.x + gapBetweenRooms), i * (roomSize.y + gapBetweenRooms), 0), Quaternion.identity, transform);
 
                     // Add corridors and walls
@@ -150,28 +175,28 @@ public class ProceduralDungeon : MonoBehaviour
                     }
                     wallTilemap.CompressBounds();
 
-                    if (neighbours.up == false) {
+                    if (neighbours.up == false && rooms[i, j].instance.GetComponent<Room>().up != Room.CanHaveNeighbour.No) {
                         for (int k = 0; k < 4; k++) {
                             wallTilemap.SetTile(new Vector3Int(3 + k, -1, 0), wallTileUp);
                         }
                     }
-                    if (neighbours.right == false) {
+                    if (neighbours.right == false && rooms[i, j].instance.GetComponent<Room>().right != Room.CanHaveNeighbour.No) {
                         for (int k = 0; k < 4; k++) {
                             wallTilemap.SetTile(new Vector3Int(9, -4 - k, 0), wallTileRight);
                         }
                     }
-                    else {
+                    else if (neighbours.right == true) {
                         Instantiate(corridorHorizontalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x - 1, i * (roomSize.y + gapBetweenRooms) - roomSize.y / 2 + 2, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
-                    if (neighbours.down == false) {
+                    if (neighbours.down == false && rooms[i, j].instance.GetComponent<Room>().down != Room.CanHaveNeighbour.No) {
                         for (int k = 0; k < 4; k++) {
                             wallTilemap.SetTile(new Vector3Int(3 + k, -10, 0), wallTileDown);
                         }
                     }
-                    else {
+                    else if (neighbours.down == true) {
                         Instantiate(corridorVerticalPrefab, new Vector3(j * (roomSize.x + gapBetweenRooms) + roomSize.x / 2 - 2, i * (roomSize.y + gapBetweenRooms) - roomSize.y + 1, 0), Quaternion.identity, rooms[i, j].instance.transform);
                     }
-                    if (neighbours.left == false) {
+                    if (neighbours.left == false && rooms[i, j].instance.GetComponent<Room>().left != Room.CanHaveNeighbour.No) {
                         for (int k = 0; k < 4; k++) {
                             wallTilemap.SetTile(new Vector3Int(0, -4 - k, 0), wallTileLeft);
                         }
@@ -187,7 +212,7 @@ public class ProceduralDungeon : MonoBehaviour
         {
             for (int j = 0; j < rooms.GetLength(1); j++)
             {
-                if (rooms[i, j].instance != null)
+                if (rooms[i, j].type != Room.Type.Empty && rooms[i, j].instance != null)
                 {
                     NeighboursDescriptor neighbours = GetNeighbours(new Vector2Int(j, i));
                     Node node = rooms[i, j].instance.GetComponentInChildren<Node>();
@@ -250,22 +275,22 @@ public class ProceduralDungeon : MonoBehaviour
         ret.down = false;
         ret.left = false;
 
-        if (index.y + 1 < size.y && rooms[index.y + 1, index.x].instance != null)
+        if (index.y + 1 < size.y && rooms[index.y + 1, index.x].type != Room.Type.Empty)
         {
             ret.up = true;
             ret.nb++;
         }
-        if (index.x + 1 < size.x && rooms[index.y, index.x + 1].instance != null)
+        if (index.x + 1 < size.x && rooms[index.y, index.x + 1].type != Room.Type.Empty)
         {
             ret.right = true;
             ret.nb++;
         }
-        if (index.y - 1 >= 0 && rooms[index.y - 1, index.x].instance != null)
+        if (index.y - 1 >= 0 && rooms[index.y - 1, index.x].type != Room.Type.Empty)
         {
             ret.down = true;
             ret.nb++;
         }
-        if (index.x - 1 >= 0 && rooms[index.y, index.x - 1].instance != null)
+        if (index.x - 1 >= 0 && rooms[index.y, index.x - 1].type != Room.Type.Empty)
         {
             ret.left = true;
             ret.nb++;
