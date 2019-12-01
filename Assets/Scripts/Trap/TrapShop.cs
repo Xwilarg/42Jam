@@ -33,6 +33,7 @@ public class TrapShop : MonoBehaviour
     public List<GameObject> _trapTypeDisplay;
     public Text _trapDescription;
     public GameObject UpgradeShop;
+    private GameObject skillBar;
 
     // Start is called before the first frame update
     public void Start()
@@ -40,6 +41,7 @@ public class TrapShop : MonoBehaviour
         cm = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         HeartOfDungeon = GameObject.Find("Dungeon Heart");
+        skillBar = GameObject.Find("SkillBar");
 
         //init shop
         _trapTypeDisplay.Add(GameObject.Find("SpawnSelection"));
@@ -94,6 +96,7 @@ public class TrapShop : MonoBehaviour
     {
         shopPanel.SetActive(true);
         tileSelected.gameObject.SetActive(true);
+        skillBar.SetActive(false);
         Time.timeScale = 0;
     }
 
@@ -101,6 +104,7 @@ public class TrapShop : MonoBehaviour
     {
         shopPanel.SetActive(false);
         tileSelected.gameObject.SetActive(false);
+        skillBar.SetActive(true);
         Time.timeScale = 1;
     }
 
