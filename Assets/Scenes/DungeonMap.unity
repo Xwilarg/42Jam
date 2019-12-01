@@ -147,7 +147,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10588236, g: 0.11764707, b: 0.13333334, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -298,7 +298,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.1040406, g: 0.11660796, b: 0.13207549, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -378,6 +378,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8003786380523938350, guid: fcdf34ea26fc08e4fa3be8719e695fc6,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Gold: 0'
+      objectReference: {fileID: 0}
     - target: {fileID: 8003786381907624483, guid: fcdf34ea26fc08e4fa3be8719e695fc6,
         type: 3}
       propertyPath: m_Name
@@ -488,11 +493,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8003786380523938350, guid: fcdf34ea26fc08e4fa3be8719e695fc6,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Gold: 0'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcdf34ea26fc08e4fa3be8719e695fc6, type: 3}
 --- !u!1 &1073684409
@@ -531,7 +531,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10588236, g: 0.11764707, b: 0.13333334, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -662,11 +662,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7371004785376666852, guid: 8a6bb34a0418dfc4fada1c7a74fe5519,
-        type: 3}
-      propertyPath: m_Name
-      value: TargetTile
-      objectReference: {fileID: 0}
     - target: {fileID: 7371004785376666850, guid: 8a6bb34a0418dfc4fada1c7a74fe5519,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -721,6 +716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7371004785376666852, guid: 8a6bb34a0418dfc4fada1c7a74fe5519,
+        type: 3}
+      propertyPath: m_Name
+      value: TargetTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6bb34a0418dfc4fada1c7a74fe5519, type: 3}
