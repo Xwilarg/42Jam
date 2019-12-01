@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896611e57069dfa4db70bdc3763d4c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 100
   damagePrefab: {fileID: 9160072129758757559, guid: bbb2c1fdb4e34684a9bd39fc45ad217d,
     type: 3}
 --- !u!61 &5572888951869507331
@@ -130,16 +130,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 0}
   spawner: {fileID: 6245158337192160806, guid: 2eaef91b6fc32984b86d37b74d3e4e9d, type: 3}
+  spawnerDescription: 
   holeTrap: {fileID: 8955623642083323668, guid: 888c242bdb2999b448cccf3171e9c85b,
     type: 3}
+  holeTrapDescription: 
   arrowTrap: {fileID: 3536784755087496955, guid: a98b59f80057520458ee24fc36cabc7e,
     type: 3}
+  arrowTrapDescription: 
   goldPile: {fileID: 3124510395843805147, guid: f87b92f9dfceeca4e911dec8062db62f,
     type: 3}
+  goldPileDescription: 
   type: 0
   tileSelected: {fileID: 0}
   tileSelectedDisplay: {fileID: 0}
   _trapTypeDisplay: []
+  _trapDescription: {fileID: 0}
+  UpgradeShop: {fileID: 0}
 --- !u!114 &4225260368435939393
 MonoBehaviour:
   m_ObjectHideFlags: 0
