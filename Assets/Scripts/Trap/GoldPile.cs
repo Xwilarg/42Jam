@@ -24,7 +24,7 @@ public class GoldPile : MonoBehaviour
 
     public void Delete()
     {
-        player.GainOr(Cost);
+        player.GainOr(gold);
         player.GetComponent<Economy>().UpdateGold();
         player.GetComponent<TrapShop>().DeleteTrap(this.gameObject);
         Destroy(this.gameObject);
