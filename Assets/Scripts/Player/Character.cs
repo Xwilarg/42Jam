@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Character : MonoBehaviour
     private const float swordReloadRef = 1f;
     private GameObject healthBar = null;
 
+    private Character player;
+
     private void Start()
     {
         swordReloadTimer = 0f;
@@ -28,6 +31,13 @@ public class Character : MonoBehaviour
                 healthBar = child.gameObject;
             }
         }
+        if (CompareTag("Hero"))
+        {
+            or = 5;
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        }
+        else
+            player = null;
     }
 
     private void Update()
@@ -64,6 +74,11 @@ public class Character : MonoBehaviour
             if (gameObject.tag == "Player") {
                 GameObject.Find("Dungeon").GetComponent<GameOver>().Over();
                 return;
+            }
+            if (player != null)
+            {
+                player.GainOr(or);
+                GameObject.Find("GoldText").GetComponent<Text>().text = "Gold: " + player.GetOr();
             }
             Destroy(gameObject);
         }
