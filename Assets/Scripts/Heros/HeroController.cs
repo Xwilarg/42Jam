@@ -66,7 +66,7 @@ public class HeroController : MonoBehaviour
         }
         else if (!Physics2D.Linecast(transform.position, player.position, avoidPlayerLayer)) // Can see player, battle mode
         {
-
+            rb.velocity = Vector2.zero;
         }
         else
         {
@@ -103,8 +103,7 @@ public class HeroController : MonoBehaviour
             {
                 if (index < path.Length)
                     index++;
-                else
-                    rb.velocity = Vector2.zero;
+                rb.velocity = Vector2.zero;
             }
             else
             {
