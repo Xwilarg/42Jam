@@ -47,7 +47,6 @@ public class Mud : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Fuck");
         panel.SetActive(true);
         panel.GetComponentInChildren<UpgradeTrap>().trap = this.gameObject;
         panel.GetComponentInChildren<DeleteTrap>().trap = this.gameObject;
@@ -55,8 +54,7 @@ public class Mud : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("coucou");
-        //if (collision.tag == "Hero")
-        //    collision.gameObject.GetComponent<HeroController>().MudSlow(timeSlow);
+        if (collision.tag == "Hero")
+            collision.gameObject.GetComponent<HeroController>().MudSlow(timeSlow);
     }
 }

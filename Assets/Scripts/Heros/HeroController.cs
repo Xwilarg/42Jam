@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class HeroController : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class HeroController : MonoBehaviour
     private int index;
 
     private const float minDistNode = .5f;
-    private const float speed = 4f;
+    private float speed = 4f;
     private const int avoidHeroLayer = ~(1 << 10);
     private const int avoidPlayerLayer = ~(1 << 8 | 1 << 11 | 1 << 10);
 
@@ -175,5 +177,17 @@ public class HeroController : MonoBehaviour
         //Rogue,
         //Archer,
         Mage
+    }
+
+    public void MudSlow(float time)
+    {
+        StartCoroutine(slowTime(time));
+    }
+
+    IEnumerator slowTime(float time)
+    {
+        speed = 2;
+        yield return new WaitForSeconds(time);
+        speed = 4;
     }
 }
