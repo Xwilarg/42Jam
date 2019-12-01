@@ -17,7 +17,7 @@ public class HeroController : MonoBehaviour
     private int index;
 
     private const float minDistNode = .5f;
-    private const float speed = 7f;
+    private const float speed = 4f;
     private const int avoidHeroLayer = ~(1 << 10);
 
     private bool enemyInRange;
