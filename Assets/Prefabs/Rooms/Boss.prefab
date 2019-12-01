@@ -790,6 +790,34 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!58 &2840537261316727397
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199859057125121019}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
+--- !u!114 &913607040831759697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199859057125121019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce92e65f261fa9a4b9e8c6ca43382654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4532490851095388969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1577,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d8f591455abcd4ebcca43633f3117d, type: 3}
+--- !u!1 &4199859057125121019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1837328991143367625, guid: 37d8f591455abcd4ebcca43633f3117d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2537608464373827634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4199859057125121017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1837328991143367627, guid: 37d8f591455abcd4ebcca43633f3117d,
@@ -1562,11 +1596,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3912812565970345924}
     m_Modifications:
-    - target: {fileID: 90114340793262356, guid: 5c4f72ae568927c45a45f253ae2674f7,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerContainer
-      objectReference: {fileID: 0}
     - target: {fileID: 8782837235466765318, guid: 5c4f72ae568927c45a45f253ae2674f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1621,6 +1650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 90114340793262356, guid: 5c4f72ae568927c45a45f253ae2674f7,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerContainer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c4f72ae568927c45a45f253ae2674f7, type: 3}
