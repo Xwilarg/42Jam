@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" || collision.tag == "Hero") {
+        if (collision.tag == "Hero") {
             collision.GetComponent<Character>().LooseHp(damage);
         }
         if (collision.gameObject != caller && collision.tag != "Projectile") {
