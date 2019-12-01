@@ -26,6 +26,7 @@ public class HeroController : MonoBehaviour
         heroName = nameValue;
         heroClass = heroValue;
         path = pathValue;
+        charac = GetComponent<Character>();
         infos.text = "Name: " + heroName + "\nClass: " + heroClass + "\nHP: " + charac.GetHp();
     }
 
@@ -35,7 +36,6 @@ public class HeroController : MonoBehaviour
         objective = GetClosestNode<Node>(player.position, "Node");
         sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        charac = GetComponent<Character>();
         index = 1;
     }
 
