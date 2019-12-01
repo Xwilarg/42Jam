@@ -139,9 +139,8 @@ MonoBehaviour:
   arrowTrap: {fileID: 3536784755087496955, guid: a98b59f80057520458ee24fc36cabc7e,
     type: 3}
   arrowTrapDescription: 
-  goldPile: {fileID: 3124510395843805147, guid: f87b92f9dfceeca4e911dec8062db62f,
-    type: 3}
-  goldPileDescription: 
+  mudTrap: {fileID: 1444326857160275828, guid: 23b9f5be7e2f9f44eadd71595660e5b8, type: 3}
+  mudTrapDescription: 
   type: 0
   tileSelected: {fileID: 0}
   tileSelectedDisplay: {fileID: 0}

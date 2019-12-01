@@ -21,13 +21,16 @@ public class TrapShop : MonoBehaviour
     public string holeTrapDescription;
     public GameObject arrowTrap;
     public string arrowTrapDescription;
-    public GameObject goldPile;
-    public string goldPileDescription;
+    public GameObject mudTrap;
+    public string mudTrapDescription;
+    //public GameObject goldPile;
+    //public string goldPileDescription;
     public enum TrapType
     {
         spawner,
         holeTrap,
         arrowTrap,
+        mud,
         gold
     }
     public TrapType type;
@@ -50,18 +53,22 @@ public class TrapShop : MonoBehaviour
         _trapTypeDisplay.Add(GameObject.Find("SpawnSelection"));
         _trapTypeDisplay.Add(GameObject.Find("HoleSelection"));
         _trapTypeDisplay.Add(GameObject.Find("ArrowsSelection"));
-        _trapTypeDisplay.Add(GameObject.Find("GoldSelection"));
+        _trapTypeDisplay.Add(GameObject.Find("MudSelection"));
+        //_trapTypeDisplay.Add(GameObject.Find("GoldSelection"));
         _trapTypeDisplay[0].GetComponent<Button>().onClick.AddListener(SetSpawner);
         _trapTypeDisplay[1].GetComponent<Button>().onClick.AddListener(SetHole);
         _trapTypeDisplay[2].GetComponent<Button>().onClick.AddListener(SetArrows);
-        _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
+        _trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetMud);
+        //_trapTypeDisplay[3].GetComponent<Button>().onClick.AddListener(SetGoldDisplay); tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
         _trapDescription = GameObject.Find("TrapDescription").GetComponent<Text>();
         spawnerDescription = "Invocator Gate\n\nInvoke a gobelin every 5 seconds to kill adventurers (10 max)\n\nCost: 70 golds";
         holeTrapDescription = "Hole\n\nKill 1 adventurer if we walk on it (1 use)\n\nCost: 25 gold";
         arrowTrapDescription = "Arrows Wall\n\nSend arrows when an adventurer come in front of them\nCost: 110 golds";
-        goldPileDescription = "Gold Pile\n\nPut an amount of gold somewhere, it will allow you to accumulate more gold, you can take it back when needed.\nAdventurers will go take in in priority";
+        mudTrapDescription = "Mud\n\nSlow down heroes during few seconds\n\nCost : 50";
+        //goldPileDescription = "Gold Pile\n\nPut an amount of gold somewhere, it will allow you to accumulate more gold, you can take it back when needed.\nAdventurers will go take in in priority";
         _trapDescription.text = spawnerDescription;
         tileSelected = GameObject.Find("TargetTile").GetComponent<TargetTile>();
+        tileSelectedDisplay = GameObject.Find("Selection").GetComponent<RectTransform>();
         shopPanel = GameObject.Find("Shop");
         trapPlaced = new List<GameObject>();
         shopText = GameObject.FindGameObjectWithTag("ShopText");
@@ -144,12 +151,19 @@ public class TrapShop : MonoBehaviour
         _trapDescription.text = arrowTrapDescription;
     }
 
-    public void SetGoldDisplay()
+    public void SetMud()
     {
-        type = TrapType.gold;
+        type = TrapType.mud;
         tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[3].transform.position.y, tileSelectedDisplay.transform.position.z);
-        _trapDescription.text = goldPileDescription;
+        _trapDescription.text = mudTrapDescription;
     }
+
+    //public void SetGoldDisplay()
+    //{
+    //    type = TrapType.gold;
+    //    tileSelectedDisplay.position = new Vector3(tileSelectedDisplay.transform.position.x, _trapTypeDisplay[3].transform.position.y, tileSelectedDisplay.transform.position.z);
+    //    _trapDescription.text = goldPileDescription;
+    //}
 
     void PlaceTrap(Vector3 _pos)
     {
@@ -161,8 +175,10 @@ public class TrapShop : MonoBehaviour
                 CreateTrap(arrowTrap, _pos, arrowTrap.GetComponentInChildren<Trap>().Cost);
             else if (type == TrapType.holeTrap && GetComponent<Character>().GetOr() >= holeTrap.GetComponent<Hole>().Cost)
                 CreateTrap(holeTrap, _pos, holeTrap.GetComponent<Hole>().Cost);
-            else if (type == TrapType.gold && GetComponent<Character>().GetOr() >= 20)
-                CreateTrap(goldPile, _pos, goldPile.GetComponent<GoldPile>().Cost);
+            else if (type == TrapType.mud && GetComponent<Character>().GetOr() >= mudTrap.GetComponent<Mud>().Cost)
+                CreateTrap(mudTrap, _pos, mudTrap.GetComponent<Mud>().Cost);
+            //else if (type == TrapType.gold && GetComponent<Character>().GetOr() >= 20)
+            //    CreateTrap(goldPile, _pos, goldPile.GetComponent<GoldPile>().Cost);
         }
     }
 
