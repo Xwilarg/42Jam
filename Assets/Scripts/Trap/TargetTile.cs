@@ -24,7 +24,6 @@ public class TargetTile : MonoBehaviour
         TilemapList = GameObject.FindGameObjectsWithTag("Ground");
         for (int i = 0; i < TilemapList.Length; i++)
         {
-            Debug.Log("Adding tilemap comp: " + i);
             _tm.Add(TilemapList[i].GetComponent<Tilemap>());
             _tm[i].CompressBounds();
         }
@@ -51,7 +50,6 @@ public class TargetTile : MonoBehaviour
 
     bool HasTileInList(Vector3Int pos)
     {
-        Debug.Log(pos);
         for (int i = 0; i < _tm.Count; i++)
         {
             if (_tm[i].HasTile(pos - Vector3Int.FloorToInt(_tm[i].transform.position)))
