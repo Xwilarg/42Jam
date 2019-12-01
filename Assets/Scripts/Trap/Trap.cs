@@ -74,7 +74,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" || collision.tag == "Hero")
+        if (collision.tag == "Hero")
             _isTarget = true;
     }
 
