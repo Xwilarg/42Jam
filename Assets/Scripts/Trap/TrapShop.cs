@@ -33,7 +33,6 @@ public class TrapShop : MonoBehaviour
     public List<GameObject> _trapTypeDisplay;
     public Text _trapDescription;
     public GameObject UpgradeShop;
-    private GameObject _trapContenair;
 
     // Start is called before the first frame update
     public void Start()
@@ -64,9 +63,6 @@ public class TrapShop : MonoBehaviour
         UpgradeShop = GameObject.Find("UpgradeShop");
         UpgradeShop.SetActive(false);
         ShopClose();
-
-        //Init Traps contenair
-        _trapContenair = new GameObject();
     }
 
     // Update is called once per frame
@@ -153,11 +149,10 @@ public class TrapShop : MonoBehaviour
 
     void CreateTrap(GameObject trap, Vector3 _pos, int cost)
     {
-        GameObject _trap = Instantiate(trap, _pos, Quaternion.identity);
+        GameObject _trap = Instantiate(trap, _pos, Quaternion.identity, gameObject.transform.parent.transform);
         GetComponent<Character>().GainOr(-cost);
         GetComponent<Economy>().UpdateGold();
         trapPlaced.Add(_trap);
-        _trap.transform.SetParent(_trapContenair.transform);
     }
 
     bool IsTaken(Vector3 pos)

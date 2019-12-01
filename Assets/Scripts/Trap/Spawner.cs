@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
     {
         if (_mobs.Count < maxMob)
         {
-            GameObject mob = Instantiate(gobelin, transform.position, Quaternion.identity);
+            GameObject mob = Instantiate(gobelin, transform.position, Quaternion.identity, gameObject.transform);
             _mobs.Add(mob);
             mob.GetComponent<FollowIA>()._spawnMother = this;
         }
