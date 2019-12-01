@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -64,3 +65,4 @@ public class NodeWindow : EditorWindow
 
     private bool showLines;
 }
+#endif
