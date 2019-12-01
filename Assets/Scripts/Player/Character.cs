@@ -33,6 +33,12 @@ public class Character : MonoBehaviour
     private void Update()
     {
         swordReloadTimer -= Time.deltaTime;
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.K) && gameObject.tag == "Player")
+        {
+            LooseHp(maxHp);
+        }
+#endif
     }
 
     public void SwordAttack(Vector3 left, int layer)
@@ -54,8 +60,13 @@ public class Character : MonoBehaviour
         healthBar.transform.localScale = new Vector3(Mathf.InverseLerp(0, maxHp, hp), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
         hp -= value;
-        if (hp <= 0)
+        if (hp <= 0) {
+            if (gameObject.tag == "Player") {
+                GameObject.Find("Dungeon").GetComponent<GameOver>().Over();
+                return;
+            }
             Destroy(gameObject);
+        }
     }
 
     public int GetOr()

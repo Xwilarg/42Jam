@@ -34,7 +34,7 @@ public class TrapShop : MonoBehaviour
     public Text _trapDescription;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         cm = GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraManager>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -176,4 +176,9 @@ public class TrapShop : MonoBehaviour
         return false;
     }
 
+    public void OnDestroy()
+    {
+        shopPanel.SetActive(true);
+        tileSelected.gameObject.SetActive(true);
+    }
 }
