@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     private Character charac;
 
     private const float iceReloadRef = 5f;
-    private const float iceForce = 25f;
-    private const int iceDamage = 5;
+    private const float iceForce = 5f;
+    private const int iceDamage = 40;
     private const float fireReloadRef = 10f;
     private const float fireForce = 5f;
-    private const int fireDamage = 15;
+    private const int fireDamage = 25;
     private const int avoidPlayerLayer = ~(1 << 8);
     private Vector3 initialPos;
 
