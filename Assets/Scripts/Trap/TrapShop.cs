@@ -157,7 +157,7 @@ public class TrapShop : MonoBehaviour
         GetComponent<Character>().GainOr(-cost);
         GetComponent<Economy>().UpdateGold();
         trapPlaced.Add(_trap);
-        trap.transform.SetParent(_trapContenair.transform);
+        _trap.transform.SetParent(_trapContenair.transform);
     }
 
     bool IsTaken(Vector3 pos)
