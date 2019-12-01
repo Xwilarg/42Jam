@@ -21,6 +21,7 @@ public class Trap : MonoBehaviour
     private bool _isTarget = false;
     public float rate;
     public float power;
+    public int damage = 10;
 
     private void Start()
     {
@@ -38,9 +39,28 @@ public class Trap : MonoBehaviour
     {
         if (!_cooldown)
         {
-            GameObject _trap = Instantiate(projectile, transform.position, Quaternion.identity);
+            Vector3 position = transform.position;
+
+            GameObject _trap = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 0.5f, 0), Quaternion.identity, gameObject.transform);
             _trap.GetComponent<Rigidbody2D>().AddForce(-transform.up * power);
-            Destroy(_trap, 2);
+            _trap.GetComponent<Projectile>().caller = gameObject;
+            _trap.GetComponent<Projectile>().damage = damage;
+
+            _trap = Instantiate(projectile, new Vector3(transform.position.x + 0.5f, transform.position.y, 0), Quaternion.Euler(0, 0, 90), gameObject.transform);
+            _trap.GetComponent<Rigidbody2D>().AddForce(transform.right * power);
+            _trap.GetComponent<Projectile>().caller = gameObject;
+            _trap.GetComponent<Projectile>().damage = damage;
+
+            _trap = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.Euler(0, 0, 180), gameObject.transform);
+            _trap.GetComponent<Rigidbody2D>().AddForce(transform.up * power);
+            _trap.GetComponent<Projectile>().caller = gameObject;
+            _trap.GetComponent<Projectile>().damage = damage;
+
+            _trap = Instantiate(projectile, new Vector3(transform.position.x - 0.5f, transform.position.y, 0), Quaternion.Euler(0, 0, 270), gameObject.transform);
+            _trap.GetComponent<Rigidbody2D>().AddForce(-transform.right * power);
+            _trap.GetComponent<Projectile>().caller = gameObject;
+            _trap.GetComponent<Projectile>().damage = damage;
+
             _cooldown = true;
             StartCoroutine(cooldown());
         }
@@ -54,13 +74,13 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" || collision.tag == "Hero")
             _isTarget = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" || collision.tag == "Hero")
             _isTarget = false;
     }
 
@@ -71,6 +91,7 @@ public class Trap : MonoBehaviour
         {
             player.GainOr(-Cost * (Level + 1));
             Level += 1;
+            damage = (int)(damage * 1.5f);
             player.GetComponent<Economy>().UpdateGold();
             GetComponent<SpriteRenderer>().sprite = upgradeSprite[Level];
         }

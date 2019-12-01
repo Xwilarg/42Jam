@@ -9,6 +9,7 @@ TagManager:
   - Hero
   - Ground
   - ShopText
+  - Projectile
   layers:
   - Default
   - TransparentFX

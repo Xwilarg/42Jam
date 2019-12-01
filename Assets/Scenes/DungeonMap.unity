@@ -1458,3 +1458,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 1475305426}
+  gameIsOver: 0
