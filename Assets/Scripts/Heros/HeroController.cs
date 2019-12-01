@@ -103,7 +103,7 @@ public class HeroController : MonoBehaviour
             {
                 if (index < path.Length)
                     index++;
-                rb.velocity = Vector2.zero;
+                rb.velocity = Vector2.zero; 
             }
             else
             {
