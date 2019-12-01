@@ -67,8 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infos: {fileID: 2701064236708781390}
-  mageSprite: {fileID: -8180171696930044909, guid: fdcff8b4edfce30488342ddd120e5f40,
-    type: 3}
+  mageSprite: {fileID: 21300000, guid: 929b1628c448208498c00d5e24f75cc0, type: 3}
 --- !u!61 &5461606557075797402
 BoxCollider2D:
   m_ObjectHideFlags: 0
