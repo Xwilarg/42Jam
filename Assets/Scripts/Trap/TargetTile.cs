@@ -13,6 +13,7 @@ public class TargetTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _tm = new List<Tilemap>();
         Dungeon = GameObject.Find("Dungeon");
         TileMapSave();
         SetInvisible();
@@ -23,6 +24,7 @@ public class TargetTile : MonoBehaviour
         TilemapList = GameObject.FindGameObjectsWithTag("Ground");
         for (int i = 0; i < TilemapList.Length; i++)
         {
+            Debug.Log("Adding tilemap comp: " + i);
             _tm.Add(TilemapList[i].GetComponent<Tilemap>());
             _tm[i].CompressBounds();
         }
