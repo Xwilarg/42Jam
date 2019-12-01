@@ -37,8 +37,19 @@ public class ZoomIn : MonoBehaviour
             if (Camera.main.fieldOfView <= minFoV)
             {
                 transform.parent = toAimGo.transform;
-                Destroy(this);
+                //Destroy(this);
+                enabled = false;
             }
         }
+    }
+
+    public void Reset()
+    {
+        Camera.main.fieldOfView = baseFov;
+        transform.position = basePos;
+        toAimGo = GameObject.FindGameObjectWithTag(toAim).transform;
+        index = 0;
+        transform.parent = null;
+        enabled = true;
     }
 }

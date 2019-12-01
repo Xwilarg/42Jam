@@ -36,9 +36,18 @@ public class ProceduralDungeon : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.G)) {
-            Generate();
+            StartCoroutine("Regenerate");
         }
 #endif
+    }
+
+    public IEnumerator Regenerate()
+    {
+        Camera.main.transform.parent = null;
+        DestroyDungeon();
+        yield return new WaitForSeconds(0.5f);
+        Generate();
+        Camera.main.GetComponent<ZoomIn>().Reset();
     }
 
     public void Generate()
