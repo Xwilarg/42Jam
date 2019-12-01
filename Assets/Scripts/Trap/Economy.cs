@@ -10,7 +10,7 @@ public class Economy : MonoBehaviour
     void Start()
     {
         player = GetComponent<Character>();
-        player.GainOr(100);
+        player.GainOr(200);
         goldDisplay = GameObject.Find("GoldText").GetComponent<Text>();
         goldDisplay.text = "Gold: " + player.GetOr();
     }
